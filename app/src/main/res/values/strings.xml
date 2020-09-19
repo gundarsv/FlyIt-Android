@@ -1,5 +1,21 @@
 <resources>
     <string name="app_name">FlyIt</string>
+
+    <!--Register Fragment-->
     <string name="log_in">Log In</string>
+    <string name="log_in_hint_email">Email</string>
+    <string name="log_in_hint_password">Password</string>
+    <string name="log_in_register_text">No account? Register here!</string>
+
+
     <string name="log_out">Log out</string>
+
+    <!--Register Fragment-->
+    <string name="register_layout_register">Register</string>
+    <string name="register_hint_email">Email</string>
+    <string name="register_hint_repeat_email">Repeat Email</string>
+    <string name="register_hint_password">Password</string>
+    <string name="register_hint_repeat_password">Repeat Password</string>
+    <string name="register_log_in_text">Have an account? Log In here!</string>
+
 </resources>
