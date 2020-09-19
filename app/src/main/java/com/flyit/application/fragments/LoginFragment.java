@@ -1,6 +1,5 @@
 package com.flyit.application.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,7 +29,6 @@ public class LoginFragment extends Fragment {
     private FragmentManager fragmentManager;
     private ProgressBar mProgressBar;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,7 +38,6 @@ public class LoginFragment extends Fragment {
         mUserName = view.findViewById(R.id.log_in_email_address);
         mPassword = view.findViewById(R.id.log_in_password);
         mProgressBar = view.findViewById(R.id.progressBar);
-
 
         this.fragmentManager = getActivity().getSupportFragmentManager();
 
@@ -85,7 +82,6 @@ public class LoginFragment extends Fragment {
             }
         });
 
-
         return view;
     }
 
@@ -107,5 +103,4 @@ public class LoginFragment extends Fragment {
         ft.replace(R.id.fragment_container, frag);
         ft.commit();
     }
-
 }
