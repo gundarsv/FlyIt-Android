@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.flyit.application.R;
+import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.models.Resource;
 import com.flyit.application.models.User;
 import com.flyit.application.viewModels.UserViewModel;
@@ -52,7 +53,7 @@ public class UserFragment extends Fragment {
             @Override
             public void onChanged(Resource<User> userResource) {
                 if (userResource == null) {
-                    changeFragment(new LoginFragment(), "LoginFragment");
+                    FragmentUtils.changeFragment(getActivity(), fragmentManager, new LoginFragment(), "LoginFragment");
                 } else if (userResource.getStatus().equals(Resource.Status.SUCCESS)) {
                     mUserData.setText(userResource.getData().getUserName());
                 }
@@ -65,19 +66,5 @@ public class UserFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-    }
-
-    public void changeFragment(Fragment fragment, String tag) {
-        getActivity().getViewModelStore().clear();
-
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-
-        Fragment frag = fragmentManager.findFragmentByTag(tag);
-        if (frag == null) {
-            frag = fragment;
-        }
-
-        ft.replace(R.id.fragment_container, frag);
-        ft.commit();
     }
 }

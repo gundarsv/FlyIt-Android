@@ -19,6 +19,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.flyit.application.R;
+import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.viewModels.LogInViewModel;
 
 public class LoginFragment extends Fragment {
@@ -28,6 +29,7 @@ public class LoginFragment extends Fragment {
     private TextView mPassword;
     private FragmentManager fragmentManager;
     private ProgressBar mProgressBar;
+    private TextView mRegisterText;
 
     @Nullable
     @Override
@@ -38,6 +40,7 @@ public class LoginFragment extends Fragment {
         mUserName = view.findViewById(R.id.log_in_email_address);
         mPassword = view.findViewById(R.id.log_in_password);
         mProgressBar = view.findViewById(R.id.progressBar);
+        mRegisterText = view.findViewById(R.id.register_message);
 
         this.fragmentManager = getActivity().getSupportFragmentManager();
 
@@ -47,6 +50,13 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 loginViewModel.logIn(mUserName.getText().toString(), mPassword.getText().toString());
+            }
+        });
+
+        mRegisterText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentUtils.changeFragment(getActivity(), fragmentManager, new RegisterFragment(), "RegisterFragment");
             }
         });
 
@@ -77,7 +87,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    changeFragment(new UserFragment(), "UserFragment");
+                    FragmentUtils.changeFragment(getActivity(), fragmentManager, new UserFragment(), "UserFragment");
                 }
             }
         });
@@ -88,19 +98,5 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-    }
-
-    public void changeFragment(Fragment fragment, String tag) {
-        getActivity().getViewModelStore().clear();
-
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-
-        Fragment frag = fragmentManager.findFragmentByTag(tag);
-        if (frag == null) {
-            frag = fragment;
-        }
-
-        ft.replace(R.id.fragment_container, frag);
-        ft.commit();
     }
 }
