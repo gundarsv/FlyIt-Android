@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
+import com.flyit.application.fragments.FlightsFragment;
 import com.flyit.application.fragments.LoadingFragment;
 import com.flyit.application.fragments.LoginFragment;
 import com.flyit.application.fragments.UserFragment;
@@ -39,16 +40,11 @@ public class MainActivity extends AppCompatActivity {
         this.mainViewModel.getIsAuthenticated().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (aBoolean) {
-                            changeFragment(new UserFragment(), "UserFragment");
-                        } else {
-                            changeFragment(new LoginFragment(), "LoginFragment");
-                        }
-                    }
-                }, 2000);
+                if (aBoolean) {
+                    changeFragment(new FlightsFragment(), "FlightsFragment");
+                } else {
+                    changeFragment(new LoginFragment(), "LoginFragment");
+                }
             }
         });
     }

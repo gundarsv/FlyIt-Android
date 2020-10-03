@@ -91,7 +91,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    FragmentUtils.changeFragment(getActivity(), fragmentManager, new UserFragment(), "UserFragment");
+                    FragmentUtils.changeFragment(getActivity(), fragmentManager, new FlightsFragment(), "FlightsFragment");
                 }
             }
         });
