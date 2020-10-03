@@ -1,0 +1,65 @@
+package com.flyit.application.fragments;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.SearchView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.flyit.application.R;
+import com.flyit.application.models.Flight;
+import com.flyit.application.models.SearchForFlight;
+import com.flyit.application.viewModels.SearchForFlightViewModel;
+
+public class SearchForFlightFragment extends Fragment {
+
+    private FragmentManager fragmentManager;
+    private SearchForFlightViewModel searchForFlightViewModel;
+    private SearchView mSearchView;
+    private TextView mSearchFlightNo;
+    private Button mButtonSearch;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_searchforflights, container, false);
+
+        mSearchView = view.findViewById(R.id.searchFlight);
+        mSearchFlightNo = view.findViewById(R.id.searchFlightNo);
+        mButtonSearch = view.findViewById(R.id.buttonSearch);
+
+        searchForFlightViewModel = new ViewModelProvider(this).get(SearchForFlightViewModel.class);
+
+        this.fragmentManager = getActivity().getSupportFragmentManager();
+
+       mButtonSearch.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               searchForFlightViewModel.searchFlight(mSearchView.getQuery().toString());
+           }
+       });
+
+        searchForFlightViewModel.getSearchedFlights().observe(getViewLifecycleOwner(), new Observer<Flight>() {
+            @Override
+            public void onChanged(Flight flight) {
+                mSearchFlightNo.setText(flight.getFlightNo());
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+}
