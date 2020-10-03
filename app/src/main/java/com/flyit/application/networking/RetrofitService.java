@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
-    private static final String BASE_URL = "https://flyitapi.azurewebsites.net/api/";
+    private static final String BASE_URL = "https://flyit.azurewebsites.net/api/";
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance(Context context) {

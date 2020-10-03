@@ -45,7 +45,9 @@ public class LoginRepository {
         flyItApi.singIn(singIn).enqueue(new Callback<AuthenticationToken>() {
             @Override
             public void onResponse(Call<AuthenticationToken> call, Response<AuthenticationToken> response) {
+                Log.d("LogInFlow", "response: " + response);
                 if (response.isSuccessful()) {
+
                     mPrefsEdit.putString("accessToken", response.body().getAccessToken()).apply();
                     mPrefsEdit.putString("refreshToken", response.body().getRefreshToken()).apply();
                     mPrefsEdit.putLong("expiresAt", response.body().getExpiresAt()).apply();

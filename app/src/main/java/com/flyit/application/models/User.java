@@ -2,11 +2,21 @@ package com.flyit.application.models;
 
 public class User {
     private int id;
-    private String userName;
+    private String email;
+    private String fullName;
 
-    public User(int id, String userName) {
+    public User(int id, String userName, String fullName) {
         this.id = id;
-        this.userName = userName;
+        this.email = userName;
+        this.fullName = fullName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public int getId() {
@@ -17,11 +27,11 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

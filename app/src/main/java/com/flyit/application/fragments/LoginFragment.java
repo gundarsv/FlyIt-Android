@@ -68,8 +68,12 @@ public class LoginFragment extends Fragment {
                 Log.d("LogInFlow", "isLoadingChange: " + aBoolean);
                 if (aBoolean) {
                     mProgressBar.setVisibility(View.VISIBLE);
+                    mPassword.setEnabled(false);
+                    mUserName.setEnabled(false);
                 } else {
                     mProgressBar.setVisibility(View.INVISIBLE);
+                    mPassword.setEnabled(true);
+                    mUserName.setEnabled(true);
                 }
             }
         });
