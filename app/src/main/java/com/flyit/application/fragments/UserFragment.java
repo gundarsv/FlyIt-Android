@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -55,7 +54,7 @@ public class UserFragment extends Fragment {
                 if (userResource == null) {
                     FragmentUtils.changeFragment(getActivity(), fragmentManager, new LoginFragment(), "LoginFragment");
                 } else if (userResource.getStatus().equals(Resource.Status.SUCCESS)) {
-                    mUserData.setText(userResource.getData().getUserName());
+                    mUserData.setText(userResource.getData().getEmail());
                 }
             }
         });

@@ -5,25 +5,25 @@ import com.google.gson.annotations.SerializedName;
 
 public class SingIn {
     @Expose
-    @SerializedName("userName")
-    private String userName;
+    @SerializedName("email")
+    private String email;
 
     @Expose
     @SerializedName("password")
     private String password;
 
-    public SingIn(String userName, String password)
+    public SingIn(String email, String password)
     {
-        this.userName = userName;
+        this.email = email;
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
