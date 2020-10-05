@@ -1,21 +1,21 @@
 <resources>
     <string name="app_name">FlyIt</string>
 
-    <!--Register Fragment-->
-    <string name="log_in">Log In</string>
-    <string name="log_in_hint_email">Email</string>
-    <string name="log_in_hint_password">Password</string>
-    <string name="log_in_register_text">No account? Register here!</string>
+    <!--SignIn Fragment-->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_hint_email">Email</string>
+    <string name="sign_in_hint_password">Password</string>
+    <string name="sign_in_sign_up_text">No account? Sign up here!</string>
 
+    <!--SignUp Fragment-->
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_hint_email">Email</string>
+    <string name="sign_up_hint_name">Name</string>
+    <string name="sign_up_hint_password">Password</string>
+    <string name="sign_up_hint_repeat_password">Repeat Password</string>
+    <string name="sign_up_sign_in_text">Have an account? Sign in here!</string>
 
-    <string name="log_out">Log out</string>
-
-    <!--Register Fragment-->
-    <string name="register_layout_register">Register</string>
-    <string name="register_hint_email">Email</string>
-    <string name="register_hint_repeat_email">Repeat Email</string>
-    <string name="register_hint_password">Password</string>
-    <string name="register_hint_repeat_password">Repeat Password</string>
-    <string name="register_log_in_text">Have an account? Log In here!</string>
+    <!--User Fragment-->
+    <string name="sign_out">Sign out</string>
 
 </resources>

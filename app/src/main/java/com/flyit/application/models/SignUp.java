@@ -4,22 +4,23 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class SignUp {
-
     @Expose
     @SerializedName("email")
     private String email;
 
     @Expose
-    @SerializedName("firstName")
-    private String firstName;
-
-    @Expose
-    @SerializedName("lastName")
-    private String lastName;
+    @SerializedName("fullName")
+    private String fullName;
 
     @Expose
     @SerializedName("password")
     private String password;
+
+    public SignUp(String email, String fullName, String password) {
+        this.email = email;
+        this.fullName = fullName;
+        this.password = password;
+    }
 
     public String getEmail() {
         return email;
@@ -29,20 +30,12 @@ public class SignUp {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPassword() {

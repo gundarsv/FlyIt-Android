@@ -10,16 +10,19 @@ import androidx.lifecycle.MutableLiveData;
 import com.flyit.application.models.Resource;
 import com.flyit.application.models.User;
 import com.flyit.application.networking.callbacks.SessionCallback;
+import com.flyit.application.repositories.AccessRepository;
 import com.flyit.application.repositories.UserRepository;
 
 public class UserViewModel extends AndroidViewModel implements SessionCallback {
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     private MutableLiveData<Resource<User>> user;
     private UserRepository userRepository;
+    private AccessRepository accessRepository;
 
     public UserViewModel(@NonNull Application application) {
         super(application);
         this.userRepository = UserRepository.getUserRepository(application.getApplicationContext());
+        this.accessRepository = AccessRepository.getAccessRepository(application.getApplicationContext());
     }
 
     public LiveData<Resource<User>> getUser()
@@ -36,10 +39,10 @@ public class UserViewModel extends AndroidViewModel implements SessionCallback {
         return this.isLoading;
     }
 
-    public void logOut()
+    public void signOut()
     {
         this.isLoading.setValue(true);
-        this.userRepository.logOut(this);
+        this.accessRepository.signOut(this);
     }
 
     @Override

@@ -1,15 +1,15 @@
 package com.flyit.application.fragments.utils;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelStore;
 
 import com.flyit.application.R;
 
 public class FragmentUtils {
-    public static void changeFragment(FragmentActivity activity, FragmentManager fragmentManager, Fragment fragment, String TAG) {
-        activity.getViewModelStore().clear();
+    public static void changeFragment(ViewModelStore viewModelStore, FragmentManager fragmentManager, Fragment fragment, String TAG) {
+        viewModelStore.clear();
 
         FragmentTransaction ft = fragmentManager.beginTransaction();
 
