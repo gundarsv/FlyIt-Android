@@ -24,34 +24,28 @@ public class UserRepository {
 
     private static UserRepository userRepository = null;
 
-    private UserRepository(Context context)
-    {
+    private UserRepository(Context context) {
         this.flyItApi = RetrofitService.getRetrofitInstance(context).create(FlyItApi.class);
         this.mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         this.mPrefsEdit = mPrefs.edit();
     }
 
-    public static UserRepository getUserRepository(Context context)
-    {
-        if (userRepository == null)
-        {
+    public static UserRepository getUserRepository(Context context) {
+        if (userRepository == null) {
             userRepository = new UserRepository(context);
         }
 
         return userRepository;
     }
 
-    public MutableLiveData<Resource<User>> getUser()
-    {
+    public MutableLiveData<Resource<User>> getUser() {
         final MutableLiveData<Resource<User>> userMutableLiveData = new MutableLiveData<>();
         flyItApi.getUser().enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful())
-                {
+                if (response.isSuccessful()) {
                     userMutableLiveData.setValue(Resource.success(response.body()));
-                }
-                else {
+                } else {
                     userMutableLiveData.setValue(Resource.error(response.body().toString(), null));
                 }
             }
@@ -63,14 +57,5 @@ public class UserRepository {
         });
 
         return userMutableLiveData;
-    }
-
-    public void logOut(final SessionCallback sessionCallback)
-    {
-        mPrefsEdit.remove("accessToken").apply();
-        mPrefsEdit.remove("refreshToken").apply();
-        mPrefsEdit.remove("expiresAt").apply();
-
-        sessionCallback.onSuccess();
     }
 }

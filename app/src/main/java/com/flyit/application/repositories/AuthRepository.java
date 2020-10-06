@@ -2,14 +2,12 @@ package com.flyit.application.repositories;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import androidx.preference.PreferenceManager;
 
 import com.flyit.application.networking.callbacks.AuthCallback;
 
 public class AuthRepository {
-    private final String TAG = getClass().getSimpleName();
     private SharedPreferences mPrefs;
     private SharedPreferences.Editor mPrefsEdit;
 

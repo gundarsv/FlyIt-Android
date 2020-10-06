@@ -1,7 +1,6 @@
 package com.flyit.application;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
@@ -10,12 +9,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 
 import com.flyit.application.fragments.LoadingFragment;
-import com.flyit.application.fragments.LoginFragment;
+import com.flyit.application.fragments.SignInFragment;
 import com.flyit.application.fragments.UserFragment;
+import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.viewModels.MainViewModel;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     private MainViewModel mainViewModel;
@@ -25,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.add(R.id.fragment_container, new LoadingFragment());
@@ -39,29 +37,12 @@ public class MainActivity extends AppCompatActivity {
         this.mainViewModel.getIsAuthenticated().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (aBoolean) {
-                            changeFragment(new UserFragment(), "UserFragment");
-                        } else {
-                            changeFragment(new LoginFragment(), "LoginFragment");
-                        }
-                    }
-                }, 2000);
+                if (aBoolean) {
+                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new UserFragment(), "UserFragment");
+                } else {
+                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment");
+                }
             }
         });
-    }
-
-    public void changeFragment(Fragment fragment, String tag) {
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-
-        Fragment frag = fragmentManager.findFragmentByTag(tag);
-        if (frag == null) {
-            frag = fragment;
-        }
-
-        ft.replace(R.id.fragment_container, frag);
-        ft.commit();
     }
 }

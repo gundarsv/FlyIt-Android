@@ -1,7 +1,6 @@
 package com.flyit.application.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import com.flyit.application.models.User;
 import com.flyit.application.viewModels.UserViewModel;
 
 public class UserFragment extends Fragment {
-    private Button mLogOutButton;
+    private Button mSignOutButton;
     private TextView mUserData;
     private UserViewModel userViewModel;
     private FragmentManager fragmentManager;
@@ -32,27 +31,25 @@ public class UserFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
 
-        mLogOutButton = view.findViewById(R.id.log_out_button);
+        mSignOutButton = view.findViewById(R.id.sign_out_button);
         mUserData = view.findViewById(R.id.userData);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         this.fragmentManager = getActivity().getSupportFragmentManager();
 
-        mLogOutButton.setOnClickListener(new View.OnClickListener() {
+        mSignOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userViewModel.logOut();
+                userViewModel.signOut();
             }
         });
-
-        Log.d("LogOutFlow", fragmentManager.getFragments().toString());
 
         userViewModel.getUser().observe(getViewLifecycleOwner(), new Observer<Resource<User>>() {
             @Override
             public void onChanged(Resource<User> userResource) {
                 if (userResource == null) {
-                    FragmentUtils.changeFragment(getActivity(), fragmentManager, new LoginFragment(), "LoginFragment");
+                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment");
                 } else if (userResource.getStatus().equals(Resource.Status.SUCCESS)) {
                     mUserData.setText(userResource.getData().getEmail());
                 }

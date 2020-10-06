@@ -17,10 +17,10 @@ public interface FlyItApi {
     Call<User> getUser();
 
     @POST("Auth/SignIn")
-    Call<AuthenticationToken> singIn(@Body SingIn signIn);
+    Call<AuthenticationToken> SignIn(@Body SingIn signIn);
 
-    @POST("Auth/SingUp")
-    Call<ResponseBody> singUp(@Body SignUp signUp);
+    @POST("Auth/SignUp")
+    Call<ResponseBody> SignUp(@Body SignUp signUp);
 
     @POST("Auth/Revoke")
     Call<AuthenticationToken> revoke(@Body AuthenticationTokenRefresh authenticationTokenRefresh);
