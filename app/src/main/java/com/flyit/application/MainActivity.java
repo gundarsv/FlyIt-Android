@@ -6,11 +6,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.flyit.application.fragments.LoadingFragment;
 import com.flyit.application.fragments.SignInFragment;
-import com.flyit.application.fragments.UserFragment;
 import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.viewModels.MainViewModel;
 
@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new UserFragment(), "UserFragment");
+                    Intent intentEntertainmentSection = new Intent(getApplication(), EntertainmentActivity.class);
+                    startActivity(intentEntertainmentSection);
                 } else {
                     FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment");
                 }

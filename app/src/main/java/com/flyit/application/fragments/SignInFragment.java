@@ -1,5 +1,6 @@
 package com.flyit.application.fragments;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -23,6 +24,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.flyit.application.EntertainmentActivity;
 import com.flyit.application.R;
 import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.viewModels.SignInViewModel;
@@ -98,7 +100,8 @@ public class SignInFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new UserFragment(), "UserFragment");
+                    Intent intentEntertainmentSection = new Intent(getActivity(), EntertainmentActivity.class);
+                    startActivity(intentEntertainmentSection);
                 }
             }
         });
