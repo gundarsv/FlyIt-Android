@@ -3,16 +3,20 @@ package com.flyit.application.repositories;
 import android.content.Context;
 import android.content.MutableContextWrapper;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.preference.PreferenceManager;
 
 import com.flyit.application.models.Flight;
+import com.flyit.application.models.FlightSearch;
 import com.flyit.application.models.Resource;
 import com.flyit.application.networking.FlyItApi;
 import com.flyit.application.networking.RetrofitService;
+import com.flyit.application.networking.callbacks.AddFlightCallback;
 import com.flyit.application.networking.callbacks.DataCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -45,11 +49,11 @@ public class FlightsRepository {
         return flightsRepository;
     }
 
-    public MutableLiveData<Resource<List<Flight>>> getFlights() {
-        final MutableLiveData<Resource<List<Flight>>> flightMutableLiveData = new MutableLiveData<>();
-        flyItApi.getFlight().enqueue(new Callback<List<Flight>>() {
+    public MutableLiveData<Resource<ArrayList<Flight>>> getFlights() {
+        final MutableLiveData<Resource<ArrayList<Flight>>> flightMutableLiveData = new MutableLiveData<>();
+        flyItApi.getFlight().enqueue(new Callback<ArrayList<Flight>>() {
             @Override
-            public void onResponse(Call<List<Flight>> call, Response<List<Flight>> response) {
+            public void onResponse(Call<ArrayList<Flight>> call, Response<ArrayList<Flight>> response) {
                 if(response.isSuccessful()){
                     flightMutableLiveData.setValue(Resource.success(response.body()));
                 }
@@ -59,7 +63,7 @@ public class FlightsRepository {
             }
 
             @Override
-            public void onFailure(Call<List<Flight>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Flight>> call, Throwable t) {
                 flightMutableLiveData.setValue(Resource.failure(t.getMessage()));
 
             }
@@ -68,9 +72,9 @@ public class FlightsRepository {
     }
 
     public void searchFlight(String flightNo, final DataCallback callback){
-        flyItApi.getSearchFlight(flightNo).enqueue(new Callback<Flight>() {
+        flyItApi.getSearchFlight(flightNo).enqueue(new Callback<FlightSearch>() {
             @Override
-            public void onResponse(Call<Flight> call, Response<Flight> response) {
+            public void onResponse(Call<FlightSearch> call, Response<FlightSearch> response) {
                 if(response.isSuccessful()){
                     callback.onSuccess(response.body());
                 }
@@ -80,8 +84,28 @@ public class FlightsRepository {
             }
 
             @Override
-            public void onFailure(Call<Flight> call, Throwable t) {
+            public void onFailure(Call<FlightSearch> call, Throwable t) {
                 callback.onFailure(t.getMessage());
+            }
+        });
+    }
+
+    public void addFlight (FlightSearch flightSearch, final AddFlightCallback callback){
+        flyItApi.addFlight(flightSearch).enqueue(new Callback<Flight>() {
+            @Override
+            public void onResponse(Call<Flight> call, Response<Flight> response) {
+                if(response.isSuccessful()){
+                    callback.onAddFlightSuccess();
+                }
+                else {
+                    callback.onAddFlightFailure(response.message());
+                    Log.d("AddFlightFlow", "Failure" + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Flight> call, Throwable t) {
+                callback.onAddFlightFailure(t.getMessage());
             }
         });
     }

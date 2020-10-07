@@ -3,10 +3,12 @@ package com.flyit.application.networking;
 import com.flyit.application.models.AuthenticationToken;
 import com.flyit.application.models.AuthenticationTokenRefresh;
 import com.flyit.application.models.Flight;
+import com.flyit.application.models.FlightSearch;
 import com.flyit.application.models.SignUp;
 import com.flyit.application.models.SingIn;
 import com.flyit.application.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -30,8 +32,14 @@ public interface FlyItApi {
     Call<AuthenticationToken> revoke(@Body AuthenticationTokenRefresh authenticationTokenRefresh);
 
     @GET("Flight")
-    Call<List<Flight>> getFlight();
+    Call<ArrayList<Flight>> getFlight();
 
-    @GET("Flight/{flightNo}")
-    Call<Flight> getSearchFlight (@Path("flightNo") String flightNo);
+    @GET("Flight/Search/{flightNo}")
+    Call<FlightSearch> getSearchFlight (@Path("flightNo") String flightNo);
+
+    @POST("Flight")
+    Call<Flight> addFlight (@Body FlightSearch flightSearch);
+
+
+
 }

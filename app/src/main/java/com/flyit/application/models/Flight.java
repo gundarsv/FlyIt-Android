@@ -2,79 +2,68 @@ package com.flyit.application.models;
 
 import java.sql.Time;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Flight {
+    private float id;
+    private String date;
     private String flightNo;
-    private Date flightDate;
-    private String terminal;
-    private Time departureTime;
-    private Time arrivalTime;
-    private String departureAirport;
-    private String arrivalAirport;
+    private String status;
+    DepartureDestination departure;
+    DepartureDestination destination;
 
-    public Flight(String flightNumber, Date flightDate, String terminal, Time departureTime, Time arrivalTime, String departureAirport, String arrivalAirport) {
-        this.flightNo = flightNumber;
-        this.flightDate = flightDate;
-        this.terminal = terminal;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
-        this.departureAirport = departureAirport;
-        this.arrivalAirport = arrivalAirport;
+
+    // Getter Methods
+
+    public float getId() {
+        return id;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public String getFlightNo() {
         return flightNo;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    // Setter Methods
+
+    public void setId(float id) {
+        this.id = id;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public void setFlightNo(String flightNo) {
         this.flightNo = flightNo;
     }
 
-    public Date getFlightDate() {
-        return flightDate;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setFlightDate(Date flightDate) {
-        this.flightDate = flightDate;
+    public DepartureDestination getDeparture() {
+        return departure;
     }
 
-    public String getTerminal() {
-        return terminal;
+    public void setDeparture(DepartureDestination departure) {
+        this.departure = departure;
     }
 
-    public void setTerminal(String terminal) {
-        this.terminal = terminal;
+    public DepartureDestination getDestination() {
+        return destination;
     }
 
-    public Time getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(Time departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    public Time getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(Time arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
-
-    public String getDepartureAirport() {
-        return departureAirport;
-    }
-
-    public void setDepartureAirport(String departureAirport) {
-        this.departureAirport = departureAirport;
-    }
-
-    public String getArrivalAirport() {
-        return arrivalAirport;
-    }
-
-    public void setArrivalAirport(String arrivalAirport) {
-        this.arrivalAirport = arrivalAirport;
+    public void setDestination(DepartureDestination destination) {
+        this.destination = destination;
     }
 }

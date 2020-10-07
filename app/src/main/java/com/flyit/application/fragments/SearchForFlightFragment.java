@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.flyit.application.R;
 import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.models.Flight;
+import com.flyit.application.models.FlightSearch;
 import com.flyit.application.models.SearchForFlight;
 import com.flyit.application.viewModels.SearchForFlightViewModel;
 
@@ -29,6 +31,8 @@ public class SearchForFlightFragment extends Fragment {
     private TextView mSearchFlightNo;
     private Button mButtonSearch;
     private Button mbuttonGoToFlights;
+    private Button mButtonAddFlight;
+    private ProgressBar maddFlightProgressBar;
 
     @Nullable
     @Override
@@ -39,6 +43,8 @@ public class SearchForFlightFragment extends Fragment {
         mSearchFlightNo = view.findViewById(R.id.searchFlightNo);
         mButtonSearch = view.findViewById(R.id.buttonSearch);
         mbuttonGoToFlights = view.findViewById(R.id.buttonGoToFlights);
+        mButtonAddFlight = view.findViewById(R.id.addFlight);
+        maddFlightProgressBar = view.findViewById(R.id.addFlightProgressBar);
 
         searchForFlightViewModel = new ViewModelProvider(this).get(SearchForFlightViewModel.class);
 
@@ -58,10 +64,29 @@ public class SearchForFlightFragment extends Fragment {
            }
        });
 
-        searchForFlightViewModel.getSearchedFlights().observe(getViewLifecycleOwner(), new Observer<Flight>() {
+        searchForFlightViewModel.getSearchedFlights().observe(getViewLifecycleOwner(), new Observer<FlightSearch>() {
             @Override
-            public void onChanged(Flight flight) {
+            public void onChanged(FlightSearch flight) {
                 mSearchFlightNo.setText(flight.getFlightNo());
+            }
+        });
+
+        searchForFlightViewModel.getIsLoading().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    maddFlightProgressBar.setVisibility(View.VISIBLE);
+                }
+                else {
+                    maddFlightProgressBar.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        mButtonAddFlight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchForFlightViewModel.addFlight(mSearchFlightNo.getText().toString());
             }
         });
 
