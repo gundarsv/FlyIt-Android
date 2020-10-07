@@ -47,6 +47,8 @@ public class FlightsFragment extends Fragment {
                 FragmentUtils.changeFragment(getActivity(), fragmentManager, new SearchForFlightFragment(), "SearchForFlightsFragment");
             }
         });
+
+
         flightViewModel.getFlight().observe(getViewLifecycleOwner(), new Observer<Resource<List<Flight>>>() {
             @Override
             public void onChanged(Resource<List<Flight>> listResource) {

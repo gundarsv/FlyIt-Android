@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.flyit.application.R;
+import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.models.Flight;
 import com.flyit.application.models.SearchForFlight;
 import com.flyit.application.viewModels.SearchForFlightViewModel;
@@ -27,6 +28,7 @@ public class SearchForFlightFragment extends Fragment {
     private SearchView mSearchView;
     private TextView mSearchFlightNo;
     private Button mButtonSearch;
+    private Button mbuttonGoToFlights;
 
     @Nullable
     @Override
@@ -36,10 +38,18 @@ public class SearchForFlightFragment extends Fragment {
         mSearchView = view.findViewById(R.id.searchFlight);
         mSearchFlightNo = view.findViewById(R.id.searchFlightNo);
         mButtonSearch = view.findViewById(R.id.buttonSearch);
+        mbuttonGoToFlights = view.findViewById(R.id.buttonGoToFlights);
 
         searchForFlightViewModel = new ViewModelProvider(this).get(SearchForFlightViewModel.class);
 
         this.fragmentManager = getActivity().getSupportFragmentManager();
+
+        mbuttonGoToFlights.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentUtils.changeFragment(getActivity(), fragmentManager, new FlightsFragment(), "FlightsFragment");
+            }
+        });
 
        mButtonSearch.setOnClickListener(new View.OnClickListener() {
            @Override

@@ -25,7 +25,6 @@ public class FlightsRepository {
     private SharedPreferences mPrefs;
     private SharedPreferences.Editor mPrefsEdit;
 
-
     private static FlightsRepository flightsRepository = null;
 
     private FlightsRepository(Context context)
