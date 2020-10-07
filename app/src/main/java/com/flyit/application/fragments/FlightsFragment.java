@@ -50,7 +50,7 @@ public class FlightsFragment extends Fragment {
         mNoFlightsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentUtils.changeFragment(getActivity(), fragmentManager, new SearchForFlightFragment(), "SearchForFlightsFragment");
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SearchForFlightFragment(), "SearchForFlightsFragment");
             }
         });
 

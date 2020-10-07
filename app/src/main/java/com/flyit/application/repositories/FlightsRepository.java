@@ -71,7 +71,7 @@ public class FlightsRepository {
         return flightMutableLiveData;
     }
 
-    public void searchFlight(String flightNo, final DataCallback callback){
+    public void searchFlight(String flightNo, final DataCallback<FlightSearch> callback){
         flyItApi.getSearchFlight(flightNo).enqueue(new Callback<FlightSearch>() {
             @Override
             public void onResponse(Call<FlightSearch> call, Response<FlightSearch> response) {

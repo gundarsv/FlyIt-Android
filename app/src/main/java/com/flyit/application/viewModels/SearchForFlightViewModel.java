@@ -16,7 +16,7 @@ import com.flyit.application.repositories.FlightsRepository;
 
 import java.util.Date;
 
-public class SearchForFlightViewModel extends AndroidViewModel implements DataCallback, AddFlightCallback {
+public class SearchForFlightViewModel extends AndroidViewModel implements DataCallback<FlightSearch>, AddFlightCallback {
 
     private FlightsRepository flightsRepository;
     private MutableLiveData<FlightSearch> searchedFlight;
@@ -49,8 +49,8 @@ public class SearchForFlightViewModel extends AndroidViewModel implements DataCa
     }
 
     @Override
-    public <T> void onSuccess(T data) {
-        this.searchedFlight.setValue((FlightSearch) data);
+    public void onSuccess(FlightSearch data) {
+        this.searchedFlight.setValue(data);
     }
 
     @Override

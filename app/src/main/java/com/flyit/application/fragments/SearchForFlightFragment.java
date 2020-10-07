@@ -53,7 +53,7 @@ public class SearchForFlightFragment extends Fragment {
         mbuttonGoToFlights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentUtils.changeFragment(getActivity(), fragmentManager, new FlightsFragment(), "FlightsFragment");
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment");
             }
         });
 
