@@ -98,7 +98,7 @@ public class SignInFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new UserFragment(), "UserFragment");
+                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment");
                 }
             }
         });

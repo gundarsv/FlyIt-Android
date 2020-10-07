@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
+import com.flyit.application.fragments.FlightsFragment;
 import com.flyit.application.fragments.LoadingFragment;
 import com.flyit.application.fragments.SignInFragment;
 import com.flyit.application.fragments.UserFragment;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new UserFragment(), "UserFragment");
+                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment");
                 } else {
                     FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment");
                 }
