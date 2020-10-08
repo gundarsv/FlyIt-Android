@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.flyit.application.fragments.FlightsFragment;
 import com.flyit.application.fragments.LoadingFragment;
 import com.flyit.application.fragments.SignInFragment;
 import com.flyit.application.fragments.utils.FragmentUtils;
@@ -38,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    Intent intentEntertainmentSection = new Intent(getApplication(), EntertainmentActivity.class);
-                    startActivity(intentEntertainmentSection);
+                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment");
                 } else {
                     FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment");
                 }

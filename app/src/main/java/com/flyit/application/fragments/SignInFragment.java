@@ -100,8 +100,7 @@ public class SignInFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    Intent intentEntertainmentSection = new Intent(getActivity(), EntertainmentActivity.class);
-                    startActivity(intentEntertainmentSection);
+                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment");
                 }
             }
         });
