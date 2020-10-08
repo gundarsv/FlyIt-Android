@@ -39,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    Intent intent = new Intent(getApplication(), EntertainmentActivity.class);
-                    startActivity(intent);
-//                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment");
+                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment");
                 } else {
                     FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment");
                 }
