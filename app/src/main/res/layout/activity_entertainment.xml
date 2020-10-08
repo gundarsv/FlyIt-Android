@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/language_game_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/learn_a_new_language"
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15"
+        />
+
+    <ImageView
+        android:id="@+id/language_game_logo_image"
+        android:layout_width="232dp"
+        android:layout_height="194dp"
+        android:src="@drawable/language_game_logo"
+        android:background="@color/entertainmentBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/language_game_text"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.1"
+        android:onClick="btnLoadUnity"
+        />
+
+    <TextView
+        android:id="@+id/trivia_quiz_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trivia_time"
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/language_game_logo_image"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.1"
+        />
+
+    <ImageView
+        android:id="@+id/trivia_game_logo_image"
+        android:layout_width="232dp"
+        android:layout_height="194dp"
+        android:src="@drawable/trivia_game_logo"
+        android:background="@color/entertainmentBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trivia_quiz_text"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.15"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

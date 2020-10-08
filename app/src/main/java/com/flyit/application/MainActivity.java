@@ -6,12 +6,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.flyit.application.fragments.FlightsFragment;
 import com.flyit.application.fragments.LoadingFragment;
 import com.flyit.application.fragments.SignInFragment;
-import com.flyit.application.fragments.UserFragment;
 import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.viewModels.MainViewModel;
 

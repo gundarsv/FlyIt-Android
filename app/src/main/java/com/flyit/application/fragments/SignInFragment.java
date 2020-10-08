@@ -1,5 +1,6 @@
 package com.flyit.application.fragments;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -23,6 +24,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.flyit.application.EntertainmentActivity;
 import com.flyit.application.R;
 import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.viewModels.SignInViewModel;

@@ -319,3 +319,9 @@ Thumbs.db
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/java,android,androidstudio,jetbrains+all,gradle
+
+!unity-classes.jar
+
+!unityLibrary/src/main/Il2CppOutputProject/IL2CPP/build
+
+!unityLibrary
