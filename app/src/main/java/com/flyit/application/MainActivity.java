@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         ft.add(R.id.fragment_container, new LoadingFragment());
         ft.commit();
 
-        initViewModel();
+        initViewModel();  
     }
 
     public void initViewModel() {
