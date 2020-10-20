@@ -18,9 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.flyit.application.R;
 import com.flyit.application.fragments.utils.FragmentUtils;
-import com.flyit.application.models.Flight;
 import com.flyit.application.models.FlightSearch;
-import com.flyit.application.models.SearchForFlight;
 import com.flyit.application.viewModels.SearchForFlightViewModel;
 
 public class SearchForFlightFragment extends Fragment {

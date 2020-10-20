@@ -18,7 +18,10 @@ public class FragmentUtils {
             frag = fragment;
         }
 
+        ft.addToBackStack(null);
         ft.replace(R.id.fragment_container, frag);
         ft.commit();
+
+
     }
 }

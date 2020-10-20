@@ -1,7 +1,6 @@
 package com.flyit.application.repositories;
 
 import android.content.Context;
-import android.content.MutableContextWrapper;
 import android.content.SharedPreferences;
 import android.util.Log;
 
@@ -17,7 +16,6 @@ import com.flyit.application.networking.callbacks.AddFlightCallback;
 import com.flyit.application.networking.callbacks.DataCallback;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
