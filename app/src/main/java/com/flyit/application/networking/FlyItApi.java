@@ -4,6 +4,7 @@ import com.flyit.application.models.AuthenticationToken;
 import com.flyit.application.models.AuthenticationTokenRefresh;
 import com.flyit.application.models.Flight;
 import com.flyit.application.models.FlightSearch;
+import com.flyit.application.models.News;
 import com.flyit.application.models.SignUp;
 import com.flyit.application.models.SingIn;
 import com.flyit.application.models.User;
@@ -39,6 +40,9 @@ public interface FlyItApi {
 
     @POST("Flight")
     Call<Flight> addFlight (@Body FlightSearch flightSearch);
+
+    @GET("News/{iata}/airport")
+    Call<ArrayList<News>> getNewsByAirportIata(@Path("iata") String iata);
 
 
 

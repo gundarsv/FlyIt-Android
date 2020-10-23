@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.flyit.application.R;
@@ -15,10 +16,10 @@ import java.util.ArrayList;
 
 public class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Activity context;
+    private FragmentActivity context;
     public ArrayList<Flight> flightArrayList;
 
-    public FlightsRecyclerViewAdapter(Activity context, ArrayList<Flight> flightArrayList) {
+    public FlightsRecyclerViewAdapter(FragmentActivity context, ArrayList<Flight> flightArrayList) {
         this.context = context;
         this.flightArrayList = flightArrayList;
     }
@@ -27,7 +28,7 @@ public class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View rootView = LayoutInflater.from(context).inflate(R.layout.list_item_flight, parent, false);
-        return new FlightsRecyclerViewHolder(rootView);
+        return new FlightsRecyclerViewHolder(rootView,context);
     }
 
 

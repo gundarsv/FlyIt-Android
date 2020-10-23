@@ -29,7 +29,7 @@ public class UserFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user, container, false);
+            View view = inflater.inflate(R.layout.fragment_user, container, false);
 
         mSignOutButton = view.findViewById(R.id.sign_out_button);
         mUserData = view.findViewById(R.id.userData);
