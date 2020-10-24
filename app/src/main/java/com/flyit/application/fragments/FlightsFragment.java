@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ public class FlightsFragment extends Fragment {
     private FloatingActionButton mMenuFab, mSearchFab, mControlCenterFAB, mSignOutFab;
     private TextView searchFabText, controlCenterFabText, signOutTextFab;
     Boolean isAllFabVisible;
+    private ImageView greyBackground;
     private FragmentManager fragmentManager;
     private FlightViewModel flightViewModel;
     private UserViewModel userViewModel;
@@ -75,6 +77,8 @@ public class FlightsFragment extends Fragment {
         controlCenterFabText = view.findViewById(R.id.textFabControlCenter);
         signOutTextFab = view.findViewById(R.id.textFabSignOut);
 
+        greyBackground = view.findViewById(R.id.lightGreyBackground);
+
 
         mSearchFab.setVisibility(View.GONE);
         mControlCenterFAB.setVisibility(View.GONE);
@@ -82,6 +86,7 @@ public class FlightsFragment extends Fragment {
         searchFabText.setVisibility(View.GONE);
         controlCenterFabText.setVisibility(View.GONE);
         signOutTextFab.setVisibility(View.GONE);
+        greyBackground.setVisibility(View.GONE);
 
         isAllFabVisible = false;
 
@@ -93,6 +98,7 @@ public class FlightsFragment extends Fragment {
                             mSearchFab.show();
                             mControlCenterFAB.show();
                             mSignOutFab.show();
+                            greyBackground.setVisibility(View.VISIBLE);
                             searchFabText.setVisibility(View.VISIBLE);
                             controlCenterFabText.setVisibility(View.VISIBLE);
                             signOutTextFab.setVisibility(View.VISIBLE);
@@ -102,6 +108,7 @@ public class FlightsFragment extends Fragment {
                             mSearchFab.hide();
                             mControlCenterFAB.hide();
                             mSignOutFab.hide();
+                            greyBackground.setVisibility(View.GONE);
                             searchFabText.setVisibility(View.GONE);
                             controlCenterFabText.setVisibility(View.GONE);
                             signOutTextFab.setVisibility(View.GONE);
