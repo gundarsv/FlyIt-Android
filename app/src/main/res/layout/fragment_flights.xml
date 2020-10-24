@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:alpha=".95"
     android:background="@drawable/blue_gradient"
-    android:backgroundTint="#34FFFFFF"
     android:backgroundTintMode="src_over"
     android:foregroundTint="#FFFFFF">
 
@@ -34,7 +33,9 @@
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/list_item_flight" />
+        tools:listitem="@layout/list_item_flight">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/menufloatingbutton"
@@ -49,6 +50,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976"
         app:srcCompat="@drawable/plane_floating_action_button" />
+
+    <ImageView
+        android:id="@+id/lightGreyBackground"
+        android:layout_width="477dp"
+        android:layout_height="767dp"
+        android:alpha="0.8"
+        android:backgroundTint="#4AFFFFFF"
+        android:backgroundTintMode="src_over"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/lightgrey2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingsearchflightsbutton"
@@ -69,10 +83,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:text="Search for flights"
-        android:textColor="@color/colorInvalidRed"
-        android:textSize="30dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/floatingsearchflightsbutton"
         app:layout_constraintStart_toEndOf="@+id/floatingsearchflightsbutton" />
 
@@ -91,11 +105,11 @@
         android:id="@+id/textFabControlCenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
         android:text="Control Center"
-        android:textColor="@color/colorInvalidRed"
-        android:textSize="30dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/floatingControlCenterButton"
         app:layout_constraintTop_toTopOf="@+id/floatingControlCenterButton" />
 
@@ -103,10 +117,11 @@
         android:id="@+id/textFabSignOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:text="Sign out"
-        android:textColor="@color/colorInvalidRed"
-        android:textSize="30dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/floatingSignOutFab"
         app:layout_constraintTop_toTopOf="@+id/floatingSignOutFab" />
 
