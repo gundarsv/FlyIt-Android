@@ -1,5 +1,6 @@
 package com.flyit.application.networking;
 
+import com.flyit.application.models.Airport;
 import com.flyit.application.models.AuthenticationToken;
 import com.flyit.application.models.AuthenticationTokenRefresh;
 import com.flyit.application.models.Flight;
@@ -44,6 +45,6 @@ public interface FlyItApi {
     @GET("News/{iata}/airport")
     Call<ArrayList<News>> getNewsByAirportIata(@Path("iata") String iata);
 
-
-
+    @GET("Airport/airport/{iata}")
+    Call<Airport> getAirportByIata(@Path("iata") String iata);
 }

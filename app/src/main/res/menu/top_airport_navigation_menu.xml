@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/departure_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_flight_takeoff_black_18dp"
+        android:title="@string/departure"/>
+    <item
+        android:id="@+id/destination_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_flight_land_black_18dp"
+        android:title="@string/destination"/>
+</menu>

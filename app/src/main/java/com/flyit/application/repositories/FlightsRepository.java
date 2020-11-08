@@ -14,7 +14,10 @@ import com.flyit.application.networking.FlyItApi;
 import com.flyit.application.networking.RetrofitService;
 import com.flyit.application.networking.callbacks.AddFlightCallback;
 import com.flyit.application.networking.callbacks.DataCallback;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -56,14 +59,21 @@ public class FlightsRepository {
                     flightMutableLiveData.setValue(Resource.success(response.body()));
                 }
                 else{
-                    flightMutableLiveData.setValue(Resource.error(response.body().toString(), null));
+                    try {
+                        Gson gson = new Gson();
+                        Type type = new TypeToken<String[]>() {
+                        }.getType();
+                        String[] error = gson.fromJson(response.errorBody().charStream(), type);
+                        flightMutableLiveData.setValue(Resource.error(error[0], null));
+                    } catch (Exception e) {
+                        flightMutableLiveData.setValue(Resource.failure(e.getMessage()));
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<Flight>> call, Throwable t) {
                 flightMutableLiveData.setValue(Resource.failure(t.getMessage()));
-
             }
         });
         return flightMutableLiveData;

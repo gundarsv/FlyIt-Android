@@ -68,7 +68,7 @@ public class SignInFragment extends Fragment {
         mSignUpText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignUpFragment(), "RegisterFragment");
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignUpFragment(), "RegisterFragment", null, R.id.fragment_container);
             }
         });
 
@@ -90,7 +90,6 @@ public class SignInFragment extends Fragment {
         signInViewModel.getMessage().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                Log.d("LogInFlow", "messageChange: " + s);
                 Toast.makeText(getActivity(), s,
                         Toast.LENGTH_LONG).show();
             }
@@ -100,7 +99,7 @@ public class SignInFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment");
+                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment", null, R.id.fragment_container);
                 }
             }
         });

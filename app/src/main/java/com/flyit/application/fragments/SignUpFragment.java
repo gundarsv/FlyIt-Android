@@ -63,7 +63,7 @@ public class SignUpFragment extends Fragment {
         mLoginMessageText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment");
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
             }
         });
 

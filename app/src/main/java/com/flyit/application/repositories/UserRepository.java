@@ -2,8 +2,9 @@ package com.flyit.application.repositories;
 
  import android.content.Context;
 import android.content.SharedPreferences;
+ import android.util.Log;
 
-import androidx.lifecycle.MutableLiveData;
+ import androidx.lifecycle.MutableLiveData;
 import androidx.preference.PreferenceManager;
 
 import com.flyit.application.models.Resource;
@@ -46,6 +47,7 @@ public class UserRepository {
                 if (response.isSuccessful()) {
                     userMutableLiveData.setValue(Resource.success(response.body()));
                 } else {
+                    Log.d(TAG, response.message());
                     userMutableLiveData.setValue(Resource.error(response.body().toString(), null));
                 }
             }

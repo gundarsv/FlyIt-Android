@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.flyit.application.fragments.FlightsFragment;
@@ -24,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.add(R.id.fragment_container, new LoadingFragment());
         ft.commit();
@@ -39,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment");
+                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment", null, R.id.fragment_container);
                 } else {
-                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment");
+                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
                 }
             }
         });
