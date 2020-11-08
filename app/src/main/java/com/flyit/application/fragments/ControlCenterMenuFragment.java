@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -39,6 +40,13 @@ public class ControlCenterMenuFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), EntertainmentActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment", getArguments(), R.id.fragment_container);
             }
         });
 
