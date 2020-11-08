@@ -49,7 +49,7 @@ public class UserFragment extends Fragment {
             @Override
             public void onChanged(Resource<User> userResource) {
                 if (userResource == null) {
-                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment");
+                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
                 } else if (userResource.getStatus().equals(Resource.Status.SUCCESS)) {
                     mUserData.setText(userResource.getData().getEmail());
                 }

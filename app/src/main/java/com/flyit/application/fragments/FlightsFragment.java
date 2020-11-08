@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,10 +30,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class FlightsFragment extends Fragment {
-
     private FloatingActionButton mMenuFab, mSearchFab, mControlCenterFAB, mSignOutFab;
     private TextView searchFabText, controlCenterFabText, signOutTextFab;
-    Boolean isAllFabVisible;
+    private Boolean isAllFabVisible;
     private ImageView greyBackground;
     private FragmentManager fragmentManager;
     private FlightViewModel flightViewModel;
@@ -49,17 +49,17 @@ public class FlightsFragment extends Fragment {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         flightViewModel = new ViewModelProvider(this).get(FlightViewModel.class);
 
-
         this.fragmentManager = getActivity().getSupportFragmentManager();
-
 
         flightViewModel.getFlight().observe(getViewLifecycleOwner(), new Observer<Resource<ArrayList<Flight>>>() {
             @Override
             public void onChanged(Resource<ArrayList<Flight>> listResource) {
-                if(listResource.getStatus().equals(Resource.Status.SUCCESS) ) {
+                if (listResource.getStatus().equals(Resource.Status.SUCCESS)) {
                     flightsRecyclerViewAdapter = new FlightsRecyclerViewAdapter(getActivity(), listResource.getData());
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(flightsRecyclerViewAdapter);
+                } else {
+                    Toast.makeText(getActivity(), listResource.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -91,47 +91,45 @@ public class FlightsFragment extends Fragment {
         isAllFabVisible = false;
 
         mMenuFab.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (!isAllFabVisible) {
+            @Override
+            public void onClick(View view) {
+                if (!isAllFabVisible) {
+                    mSearchFab.show();
+                    mControlCenterFAB.show();
+                    mSignOutFab.show();
+                    greyBackground.setVisibility(View.VISIBLE);
+                    searchFabText.setVisibility(View.VISIBLE);
+                    controlCenterFabText.setVisibility(View.VISIBLE);
+                    signOutTextFab.setVisibility(View.VISIBLE);
+                    isAllFabVisible = true;
+                } else {
+                    mSearchFab.hide();
+                    mControlCenterFAB.hide();
+                    mSignOutFab.hide();
+                    greyBackground.setVisibility(View.GONE);
+                    searchFabText.setVisibility(View.GONE);
+                    controlCenterFabText.setVisibility(View.GONE);
+                    signOutTextFab.setVisibility(View.GONE);
 
-                            mSearchFab.show();
-                            mControlCenterFAB.show();
-                            mSignOutFab.show();
-                            greyBackground.setVisibility(View.VISIBLE);
-                            searchFabText.setVisibility(View.VISIBLE);
-                            controlCenterFabText.setVisibility(View.VISIBLE);
-                            signOutTextFab.setVisibility(View.VISIBLE);
-                            isAllFabVisible = true;
-                        } else {
-
-                            mSearchFab.hide();
-                            mControlCenterFAB.hide();
-                            mSignOutFab.hide();
-                            greyBackground.setVisibility(View.GONE);
-                            searchFabText.setVisibility(View.GONE);
-                            controlCenterFabText.setVisibility(View.GONE);
-                            signOutTextFab.setVisibility(View.GONE);
-
-                            isAllFabVisible = false;
-                        }
-                    }
-                });
+                    isAllFabVisible = false;
+                }
+            }
+        });
 
 
         mSearchFab.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SearchForFlightFragment(), "SearchForFlightsFragment");
-                    }
-                });
+            @Override
+            public void onClick(View view) {
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SearchForFlightFragment(), "SearchForFlightsFragment", null, R.id.fragment_container);
+            }
+        });
 
         mControlCenterFAB.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new ControlCenterMenuFragment(), "ControlCenter");
-                    }
-                });
+            @Override
+            public void onClick(View view) {
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new ControlCenterMenuFragment(), "ControlCenter", null, R.id.fragment_container);
+            }
+        });
 
         mSignOutFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +142,7 @@ public class FlightsFragment extends Fragment {
             @Override
             public void onChanged(Resource<User> userResource) {
                 if (userResource == null) {
-                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment");
+                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
                 }
             }
         });

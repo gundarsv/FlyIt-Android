@@ -2,7 +2,6 @@ package com.flyit.application.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.flyit.application.EntertainmentActivity;
 import com.flyit.application.R;
@@ -32,10 +30,10 @@ public class ControlCenterMenuFragment extends Fragment {
 
         mButtonGames = view.findViewById(R.id.buttonGames);
         mButtonNews = view.findViewById(R.id.buttonNews);
-        String destination_iata=getArguments().getString("Destination_IATA");
-        String departure_iata=getArguments().getString("Departure_IATA");
-        Log.d("Clicked", destination_iata);
-        Log.d("Clicked", departure_iata);
+        mButtonAirportInfo = view.findViewById(R.id.buttonAirportInfo);
+
+        fragmentManager = getActivity().getSupportFragmentManager();
+
         mButtonGames.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,22 +45,24 @@ public class ControlCenterMenuFragment extends Fragment {
         mButtonNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle=new Bundle();
+                Bundle bundle = new Bundle();
                 bundle.putString("Destination_IATA", getArguments().getString("Destination_IATA"));
                 bundle.putString("Departure_IATA", getArguments().getString("Departure_IATA"));
 
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-
-                Fragment frag = new NewsFragment();
-                frag.setArguments(bundle);
-                ft.addToBackStack(null);
-                ft.replace(R.id.fragment_container, frag);
-                ft.commit();
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new NewsFragment(), "NewsFragment", bundle, R.id.fragment_container);
             }
         });
 
+        mButtonAirportInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("Destination_IATA", getArguments().getString("Destination_IATA"));
+                bundle.putString("Departure_IATA", getArguments().getString("Departure_IATA"));
 
-        fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new AirportFragment(), "AirportFragment", bundle, R.id.fragment_container);
+            }
+        });
 
         return view;
 

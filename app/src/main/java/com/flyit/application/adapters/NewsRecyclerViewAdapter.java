@@ -1,33 +1,26 @@
 package com.flyit.application.adapters;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.flyit.application.R;
-import com.flyit.application.fragments.ControlCenterMenuFragment;
 import com.flyit.application.fragments.NewsItemFragment;
+import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.models.News;
 import com.squareup.picasso.Picasso;
 
-import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private FragmentActivity context;
     public ArrayList<News> newsArrayList;
+    private FragmentActivity context;
     private FragmentManager fragmentManager;
 
     public NewsRecyclerViewAdapter(FragmentActivity context, ArrayList<News> newsArrayList){
@@ -59,13 +52,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 bundle.putString("News_Body", news.getBody());
                 bundle.putString("News_Title", news.getTitle());
 
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-
-                Fragment frag = new NewsItemFragment();
-                frag.setArguments(bundle);
-                ft.addToBackStack(null);
-                ft.replace(R.id.fragment_container, frag);
-                ft.commit();
+                FragmentUtils.changeFragment(context.getViewModelStore(), fragmentManager, new NewsItemFragment(), "NewsItemFragment", bundle, R.id.fragment_container);
             }
         });
 

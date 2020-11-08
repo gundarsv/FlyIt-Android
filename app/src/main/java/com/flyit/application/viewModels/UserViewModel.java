@@ -25,22 +25,18 @@ public class UserViewModel extends AndroidViewModel implements SessionCallback {
         this.accessRepository = AccessRepository.getAccessRepository(application.getApplicationContext());
     }
 
-    public LiveData<Resource<User>> getUser()
-    {
-        if (user == null)
-        {
+    public LiveData<Resource<User>> getUser() {
+        if (user == null) {
             this.user = userRepository.getUser();
         }
         return this.user;
     }
 
-    public LiveData<Boolean> getIsLoading()
-    {
+    public LiveData<Boolean> getIsLoading() {
         return this.isLoading;
     }
 
-    public void signOut()
-    {
+    public void signOut() {
         this.isLoading.setValue(true);
         this.accessRepository.signOut(this);
     }

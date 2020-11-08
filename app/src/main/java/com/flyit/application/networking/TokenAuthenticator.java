@@ -10,8 +10,6 @@ import androidx.preference.PreferenceManager;
 import com.flyit.application.models.AuthenticationToken;
 import com.flyit.application.models.AuthenticationTokenRefresh;
 
-import java.io.IOException;
-
 import okhttp3.Authenticator;
 import okhttp3.Request;
 import okhttp3.Response;

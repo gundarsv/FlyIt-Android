@@ -51,16 +51,16 @@ public class SearchForFlightFragment extends Fragment {
         mbuttonGoToFlights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment");
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment", null, R.id.fragment_container);
             }
         });
 
-       mButtonSearch.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               searchForFlightViewModel.searchFlight(mSearchView.getQuery().toString());
-           }
-       });
+        mButtonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchForFlightViewModel.searchFlight(mSearchView.getQuery().toString());
+            }
+        });
 
         searchForFlightViewModel.getSearchedFlights().observe(getViewLifecycleOwner(), new Observer<FlightSearch>() {
             @Override
@@ -72,10 +72,9 @@ public class SearchForFlightFragment extends Fragment {
         searchForFlightViewModel.getIsLoading().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(aBoolean){
+                if (aBoolean) {
                     maddFlightProgressBar.setVisibility(View.VISIBLE);
-                }
-                else {
+                } else {
                     maddFlightProgressBar.setVisibility(View.INVISIBLE);
                 }
             }

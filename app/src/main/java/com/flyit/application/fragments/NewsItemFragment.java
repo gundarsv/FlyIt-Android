@@ -37,13 +37,6 @@ public class NewsItemFragment extends Fragment {
         news_title.setText(getArguments().getString("News_Title"));
         news_body.setText(getArguments().getString("News_Body"));
 
-
-
-
-
-
-
-
         return view;
     }
 }

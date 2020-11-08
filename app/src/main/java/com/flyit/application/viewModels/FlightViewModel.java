@@ -12,8 +12,6 @@ import com.flyit.application.models.Resource;
 import com.flyit.application.repositories.FlightsRepository;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class FlightViewModel extends AndroidViewModel {
 
@@ -26,7 +24,7 @@ public class FlightViewModel extends AndroidViewModel {
     }
 
     public LiveData<Resource<ArrayList<Flight>>> getFlight() {
-        if(flight == null) {
+        if (flight == null) {
             this.flight = flightsRepository.getFlights();
         }
         return this.flight;

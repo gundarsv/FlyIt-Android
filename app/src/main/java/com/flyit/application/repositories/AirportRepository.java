@@ -6,10 +6,12 @@ import android.content.SharedPreferences;
 import androidx.lifecycle.MutableLiveData;
 import androidx.preference.PreferenceManager;
 
+import com.flyit.application.models.Airport;
 import com.flyit.application.models.News;
 import com.flyit.application.models.Resource;
 import com.flyit.application.networking.FlyItApi;
 import com.flyit.application.networking.RetrofitService;
+import com.flyit.application.networking.callbacks.DataCallback;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -20,53 +22,51 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsRepository {
+public class AirportRepository {
     private final String TAG = getClass().getSimpleName();
     private FlyItApi flyItApi;
     private SharedPreferences mPrefs;
     private SharedPreferences.Editor mPrefsEdit;
 
-    private static NewsRepository newsRepository = null;
+    private static AirportRepository airportRepository = null;
 
-    private NewsRepository(Context context) {
+    private AirportRepository(Context context) {
         this.flyItApi = RetrofitService.getRetrofitInstance(context).create(FlyItApi.class);
         this.mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         this.mPrefsEdit = mPrefs.edit();
     }
 
-    public static NewsRepository getNewsRepository(Context context) {
-        if (newsRepository == null) {
-            newsRepository = new NewsRepository(context);
+    public static AirportRepository getAirportRepository(Context context) {
+        if (airportRepository == null) {
+            airportRepository = new AirportRepository(context);
         }
 
-        return newsRepository;
+        return airportRepository;
     }
 
-    public MutableLiveData<Resource<ArrayList<News>>> getNewsByAirportIata(String iata) {
-        final MutableLiveData<Resource<ArrayList<News>>> newsMutableLiveData = new MutableLiveData<>();
-        flyItApi.getNewsByAirportIata(iata).enqueue(new Callback<ArrayList<News>>() {
+    public void getGetAirportByIata(String iata, final DataCallback<Airport> callback) {
+        flyItApi.getAirportByIata(iata).enqueue(new Callback<Airport>() {
             @Override
-            public void onResponse(Call<ArrayList<News>> call, Response<ArrayList<News>> response) {
+            public void onResponse(Call<Airport> call, Response<Airport> response) {
                 if (response.isSuccessful()) {
-                    newsMutableLiveData.setValue(Resource.success((response.body())));
+                    callback.onSuccess(response.body());
                 } else {
                     try {
                         Gson gson = new Gson();
                         Type type = new TypeToken<String[]>() {
                         }.getType();
                         String[] error = gson.fromJson(response.errorBody().charStream(), type);
-                        newsMutableLiveData.setValue(Resource.error(error[0], null));
+                        callback.onFailure(error[0]);
                     } catch (Exception e) {
-                        newsMutableLiveData.setValue(Resource.failure(e.getMessage()));
+                        callback.onFailure(e.getMessage());
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<ArrayList<News>> call, Throwable t) {
-                newsMutableLiveData.setValue(Resource.failure(t.getMessage()));
+            public void onFailure(Call<Airport> call, Throwable t) {
+                callback.onFailure(t.getMessage());
             }
         });
-        return newsMutableLiveData;
     }
 }
