@@ -3,7 +3,6 @@ package com.flyit.application;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -27,21 +26,18 @@ public class MainActivity extends AppCompatActivity {
         ft.add(R.id.fragment_container, new LoadingFragment());
         ft.commit();
 
-        initViewModel();  
+        initViewModel();
     }
 
     public void initViewModel() {
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
-        this.mainViewModel.getIsAuthenticated().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment", null, R.id.fragment_container);
-                } else {
-                    FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
-                }
-            }
-        });
+        boolean isAuthenticated = this.mainViewModel.getIsAuthenticated();
+
+        if (isAuthenticated) {
+            FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment", null, R.id.fragment_container);
+        } else {
+            FragmentUtils.changeFragment(getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
+        }
     }
 }

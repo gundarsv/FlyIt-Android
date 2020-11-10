@@ -9,59 +9,41 @@ public class Airport {
     private String rentingCompanyName;
     private String rentingCompanyPhoneNo;
 
-    public String getIata() {
-        return iata;
+    public Airport(String iata, String name, String mapUrl, String mapName, String rentingCompanyUrl, String rentingCompanyName, String rentingCompanyPhoneNo) {
+        this.iata = iata;
+        this.name = name;
+        this.mapUrl = mapUrl;
+        this.mapName = mapName;
+        this.rentingCompanyUrl = rentingCompanyUrl;
+        this.rentingCompanyName = rentingCompanyName;
+        this.rentingCompanyPhoneNo = rentingCompanyPhoneNo;
     }
 
-    public void setIata(String iata) {
-        this.iata = iata;
+    public String getIata() {
+        return iata;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getMapName() {
+        return mapName;
     }
 
     public String getMapUrl() {
         return mapUrl;
     }
 
-    public void setMapUrl(String mapUrl) {
-        this.mapUrl = mapUrl;
-    }
-
-    public String getMapName() {
-        return mapName;
-    }
-
-    public void setMapName(String mapName) {
-        this.mapName = mapName;
-    }
-
     public String getRentingCompanyUrl() {
         return rentingCompanyUrl;
-    }
-
-    public void setRentingCompanyUrl(String rentingCompanyUrl) {
-        this.rentingCompanyUrl = rentingCompanyUrl;
     }
 
     public String getRentingCompanyName() {
         return rentingCompanyName;
     }
 
-    public void setRentingCompanyName(String rentingCompanyName) {
-        this.rentingCompanyName = rentingCompanyName;
-    }
-
     public String getRentingCompanyPhoneNo() {
         return rentingCompanyPhoneNo;
-    }
-
-    public void setRentingCompanyPhoneNo(String rentingCompanyPhoneNo) {
-        this.rentingCompanyPhoneNo = rentingCompanyPhoneNo;
     }
 }

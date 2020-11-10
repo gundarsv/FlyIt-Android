@@ -23,7 +23,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     private FragmentActivity context;
     private FragmentManager fragmentManager;
 
-    public NewsRecyclerViewAdapter(FragmentActivity context, ArrayList<News> newsArrayList){
+    public NewsRecyclerViewAdapter(FragmentActivity context, ArrayList<News> newsArrayList) {
         this.context = context;
         this.newsArrayList = newsArrayList;
         this.fragmentManager = context.getSupportFragmentManager();
@@ -47,7 +47,7 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         viewHolder.newsReadMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle=new Bundle();
+                Bundle bundle = new Bundle();
                 bundle.putString("News_ImageURL", news.getImageurl());
                 bundle.putString("News_Body", news.getBody());
                 bundle.putString("News_Title", news.getTitle());

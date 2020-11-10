@@ -6,14 +6,12 @@ import android.content.SharedPreferences;
 import androidx.lifecycle.MutableLiveData;
 import androidx.preference.PreferenceManager;
 
+import com.flyit.application.fragments.utils.MessageUtils;
 import com.flyit.application.models.News;
 import com.flyit.application.models.Resource;
 import com.flyit.application.networking.FlyItApi;
 import com.flyit.application.networking.RetrofitService;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -21,7 +19,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NewsRepository {
-    private final String TAG = getClass().getSimpleName();
     private FlyItApi flyItApi;
     private SharedPreferences mPrefs;
     private SharedPreferences.Editor mPrefsEdit;
@@ -50,15 +47,7 @@ public class NewsRepository {
                 if (response.isSuccessful()) {
                     newsMutableLiveData.setValue(Resource.success((response.body())));
                 } else {
-                    try {
-                        Gson gson = new Gson();
-                        Type type = new TypeToken<String[]>() {
-                        }.getType();
-                        String[] error = gson.fromJson(response.errorBody().charStream(), type);
-                        newsMutableLiveData.setValue(Resource.error(error[0], null));
-                    } catch (Exception e) {
-                        newsMutableLiveData.setValue(Resource.failure(e.getMessage()));
-                    }
+                    newsMutableLiveData.setValue(Resource.error(MessageUtils.getErrorMessage(response), null));
                 }
             }
 

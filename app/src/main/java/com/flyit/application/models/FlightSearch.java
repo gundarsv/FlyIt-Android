@@ -1,5 +1,12 @@
 package com.flyit.application.models;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class FlightSearch {
     private String flightNo;
     private String date;
@@ -13,15 +20,12 @@ public class FlightSearch {
         return flightNo;
     }
 
-    public void setFlightNo(String flightNo) {
-        this.flightNo = flightNo;
-    }
-
     public String getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public OffsetDateTime getDateTimeOffset() {
+        return OffsetDateTime.parse(date, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
     }
 }

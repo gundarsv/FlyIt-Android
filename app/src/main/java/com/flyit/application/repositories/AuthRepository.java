@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 
 import androidx.preference.PreferenceManager;
 
-import com.flyit.application.networking.callbacks.AuthCallback;
-
 public class AuthRepository {
     private SharedPreferences mPrefs;
     private SharedPreferences.Editor mPrefsEdit;
@@ -26,13 +24,13 @@ public class AuthRepository {
         return authRepository;
     }
 
-    public void isUserAuthenticated(final AuthCallback callback) {
+    public boolean isUserAuthenticated() {
         String accessToken = mPrefs.getString("accessToken", null);
 
         if (accessToken != null && !accessToken.trim().isEmpty()) {
-            callback.onAuthCallback(true);
+            return true;
         } else {
-            callback.onAuthCallback(false);
+            return false;
         }
     }
 }

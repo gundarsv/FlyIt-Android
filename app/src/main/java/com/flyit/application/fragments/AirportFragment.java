@@ -37,11 +37,10 @@ public class AirportFragment extends Fragment {
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId())
-                {
+                switch (item.getItemId()) {
                     case R.id.destination_item:
-                       changeFragment(getArguments().getString("Destination_IATA"));
-                       return true;
+                        changeFragment(getArguments().getString("Destination_IATA"));
+                        return true;
                     case R.id.departure_item:
                         changeFragment(getArguments().getString("Departure_IATA"));
                         return true;
@@ -54,8 +53,7 @@ public class AirportFragment extends Fragment {
         return view;
     }
 
-    private void initFragment()
-    {
+    private void initFragment() {
         this.mFragmentManager = getActivity().getSupportFragmentManager();
 
         Bundle bundle = new Bundle();
@@ -69,8 +67,7 @@ public class AirportFragment extends Fragment {
         ft.commit();
     }
 
-    private void changeFragment(String iata)
-    {
+    private void changeFragment(String iata) {
         Bundle bundle = new Bundle();
         bundle.putString("airport_iata", iata);
         FragmentUtils.changeFragment(getActivity().getViewModelStore(), mFragmentManager, new AirportInfoFragment(), "AirportInfoFragment", bundle, R.id.airport_info_container);
