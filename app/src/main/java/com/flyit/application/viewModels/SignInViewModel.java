@@ -8,10 +8,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.flyit.application.models.SingIn;
-import com.flyit.application.networking.callbacks.SessionCallback;
+import com.flyit.application.networking.callbacks.DataCallback;
 import com.flyit.application.repositories.AccessRepository;
 
-public class SignInViewModel extends AndroidViewModel implements SessionCallback {
+public class SignInViewModel extends AndroidViewModel implements DataCallback {
     private AccessRepository accessRepository;
 
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
@@ -76,7 +76,7 @@ public class SignInViewModel extends AndroidViewModel implements SessionCallback
     }
 
     @Override
-    public void onSuccess() {
+    public void onSuccess(Object data) {
         this.isLoading.setValue(false);
         this.isSignInSuccess.setValue(true);
     }

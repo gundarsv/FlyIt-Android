@@ -63,8 +63,7 @@ public class AirportInfoFragment extends Fragment {
                     mRentingCompany.setText(Html.fromHtml("<a href=" + airport.getRentingCompanyUrl() + "> " + airport.getRentingCompanyName()));
                     mRentingCompany.setMovementMethod(LinkMovementMethod.getInstance());
                     mRentingCompanyPhoneNumber.setText(airport.getRentingCompanyPhoneNo());
-                }
-                else {
+                } else {
                     mAirportInfoLayout.setVisibility(View.INVISIBLE);
                 }
             }
@@ -98,9 +97,9 @@ public class AirportInfoFragment extends Fragment {
                 pdfIntent.setDataAndType(path, "application/pdf");
                 pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                try{
+                try {
                     startActivity(pdfIntent);
-                }catch(ActivityNotFoundException e){
+                } catch (ActivityNotFoundException e) {
                     Toast.makeText(getContext(), "No Application available to view PDF", Toast.LENGTH_SHORT).show();
                 }
             }

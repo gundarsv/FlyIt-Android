@@ -8,66 +8,82 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.flyit.application.models.Flight;
 import com.flyit.application.models.FlightSearch;
 import com.flyit.application.networking.callbacks.AddFlightCallback;
 import com.flyit.application.networking.callbacks.DataCallback;
 import com.flyit.application.repositories.FlightsRepository;
 
-import java.util.Date;
-
 public class SearchForFlightViewModel extends AndroidViewModel implements DataCallback<FlightSearch>, AddFlightCallback {
 
     private FlightsRepository flightsRepository;
     private MutableLiveData<FlightSearch> searchedFlight;
+    private MutableLiveData<String> message = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
+    private MutableLiveData<Boolean> isFlightNumberValid = new MutableLiveData<>();
 
     public SearchForFlightViewModel(@NonNull Application application) {
         super(application);
         this.flightsRepository = FlightsRepository.getFLightsRepository(application.getApplicationContext());
     }
 
-    public void searchFlight(String flightNo){
-        this.flightsRepository.searchFlight(flightNo,this);
-        Log.d("SearchFlow", "flightNumber" + flightNo);
-    }
-
     public LiveData<FlightSearch> getSearchedFlights() {
-        if(searchedFlight == null){
+        if (searchedFlight == null) {
             this.searchedFlight = new MutableLiveData<FlightSearch>();
         }
         return searchedFlight;
-    }
-
-    public void addFlight(String flightNo){
-        this.isLoading.setValue(true);
-        this.flightsRepository.addFlight(new FlightSearch(flightNo, "2020-10-07T00:00:00+00:00"), this);
     }
 
     public LiveData<Boolean> getIsLoading() {
         return isLoading;
     }
 
+    public LiveData<String> getMessage() {
+        return message;
+    }
+
+    public LiveData<Boolean> getIsFlightNumberValid() {
+        return isFlightNumberValid;
+    }
+
+    public void addFlight(FlightSearch flightSearch) {
+        this.isLoading.setValue(true);
+        this.flightsRepository.addFlight(flightSearch, this);
+    }
+
+    public void searchFlight(String flightNo) {
+        if (flightNo.trim().isEmpty())
+        {
+            this.isFlightNumberValid.setValue(false);
+            this.message.setValue("Please insert flight number");
+            return;
+        }
+
+        this.isFlightNumberValid.setValue(true);
+        this.isLoading.setValue(true);
+        this.flightsRepository.searchFlight(flightNo, this);
+    }
+
     @Override
     public void onSuccess(FlightSearch data) {
+        this.isLoading.setValue(false);
         this.searchedFlight.setValue(data);
     }
 
     @Override
     public void onFailure(String msg) {
-
+        this.isLoading.setValue(false);
+        this.message.setValue(msg);
     }
 
     @Override
     public void onAddFlightSuccess() {
-        Log.d("AddFlightFlow", "Success");
+        this.message.setValue("Flight was added");
         this.isLoading.setValue(false);
-
     }
 
     @Override
     public void onAddFlightFailure(String message) {
-        Log.d("AddFlightFlow", "Failure" + message);
+        this.message.setValue(message);
         this.isLoading.setValue(false);
     }
 }

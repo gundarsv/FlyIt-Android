@@ -116,7 +116,6 @@ public class FlightsFragment extends Fragment {
             }
         });
 
-
         mSearchFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,6 +141,8 @@ public class FlightsFragment extends Fragment {
             @Override
             public void onChanged(Resource<User> userResource) {
                 if (userResource == null) {
+                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
+                } else if (userResource.getStatus().equals(Resource.Status.UNAUTHORIZED)) {
                     FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
                 }
             }

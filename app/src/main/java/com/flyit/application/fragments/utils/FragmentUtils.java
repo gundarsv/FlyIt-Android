@@ -7,8 +7,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelStore;
 
-import com.flyit.application.R;
-
 public class FragmentUtils {
     public static void changeFragment(ViewModelStore viewModelStore, FragmentManager fragmentManager, Fragment fragment, String TAG, Bundle bundle, int container) {
         viewModelStore.clear();

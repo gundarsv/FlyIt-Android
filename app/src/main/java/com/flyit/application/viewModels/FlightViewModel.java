@@ -14,7 +14,6 @@ import com.flyit.application.repositories.FlightsRepository;
 import java.util.ArrayList;
 
 public class FlightViewModel extends AndroidViewModel {
-
     private FlightsRepository flightsRepository;
     private MutableLiveData<Resource<ArrayList<Flight>>> flight;
 
@@ -29,5 +28,4 @@ public class FlightViewModel extends AndroidViewModel {
         }
         return this.flight;
     }
-
 }

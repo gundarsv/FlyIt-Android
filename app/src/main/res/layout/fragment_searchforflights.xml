@@ -16,39 +16,11 @@
         android:alpha=".35"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.297"
         app:srcCompat="@drawable/big_plane_2half" />
-
-    <SearchView
-        android:id="@+id/searchFlight"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:alpha=".65"
-        android:background="@drawable/rounded_corners"
-        android:backgroundTint="#C4C4C4"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.201" />
-
-    <Button
-        android:id="@+id/buttonSearch"
-        android:layout_width="191dp"
-        android:layout_height="51dp"
-        android:background="@drawable/rounded_corners"
-        android:text="Search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.347" />
 
     <Button
         android:id="@+id/buttonGoToFlights"
@@ -63,40 +35,34 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.843" />
 
-    <Button
-        android:id="@+id/addFlight"
-        android:layout_width="192dp"
-        android:layout_height="47dp"
-        android:background="@drawable/rounded_corners"
-        android:text="Add Flight"
+    <AutoCompleteTextView
+        android:id="@+id/searchFlightNo"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorWhite"
+        android:drawableRight="@drawable/ic_search_white_18dp"
+        android:ems="10"
+        android:hint="Insert Flight Number"
+        android:inputType="textAutoComplete"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSearch"
-        app:layout_constraintVertical_bias="0.091" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.205" />
 
     <ProgressBar
         android:id="@+id/addFlightProgressBar"
         style="?android:attr/progressBarStyle"
-        android:layout_width="237dp"
-        android:layout_height="235dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.429"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/searchFlightNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/buttonGoToFlights"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addFlight"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintTop_toBottomOf="@+id/searchFlightNo"
+        app:layout_constraintVertical_bias="0.222" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

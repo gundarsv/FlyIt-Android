@@ -12,7 +12,7 @@ public class Resource<T> {
     private String message;
 
     public Resource(@NonNull Status status, @Nullable T data,
-                     @Nullable String message) {
+                    @Nullable String message) {
         this.status = status;
         this.data = data;
         this.message = message;

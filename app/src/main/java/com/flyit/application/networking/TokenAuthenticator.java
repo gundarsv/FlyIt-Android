@@ -2,7 +2,6 @@ package com.flyit.application.networking;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.preference.PreferenceManager;
@@ -18,7 +17,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class TokenAuthenticator implements Authenticator {
-    private final String TAG = getClass().getSimpleName();
     private SharedPreferences mPrefs;
     private SharedPreferences.Editor mPrefsEdit;
     private static FlyItApi flyItApi;
@@ -51,7 +49,6 @@ public class TokenAuthenticator implements Authenticator {
     }
 
     public boolean refreshToken() {
-        Log.d("Authentication", "refreshToken");
         final String refreshToken = mPrefs.getString("refreshToken", "");
         final String accessToken = mPrefs.getString("accessToken", "");
 
@@ -67,14 +64,12 @@ public class TokenAuthenticator implements Authenticator {
             @Override
             public void onResponse(Call<AuthenticationToken> call, retrofit2.Response<AuthenticationToken> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "revoke" + response.code());
                     authenticationToken.setValue(response.body());
                 }
             }
 
             @Override
             public void onFailure(Call<AuthenticationToken> call, Throwable t) {
-                Log.e(TAG, "revoke onFailure" + t);
                 authenticationToken.setValue(null);
             }
         });

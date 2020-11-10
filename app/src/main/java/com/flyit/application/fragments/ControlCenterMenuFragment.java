@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -53,22 +54,33 @@ public class ControlCenterMenuFragment extends Fragment {
         mButtonNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("Destination_IATA", getArguments().getString("Destination_IATA"));
-                bundle.putString("Departure_IATA", getArguments().getString("Departure_IATA"));
-
-                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new NewsFragment(), "NewsFragment", bundle, R.id.fragment_container);
+                if (getArguments() == null)
+                {
+                    Toast.makeText(getActivity(), "Please select flight", Toast.LENGTH_LONG).show();
+                }
+                else if (getArguments().getString("Departure_IATA", null) == null || getArguments().getString("Destination_IATA", null) == null)
+                {
+                    Toast.makeText(getActivity(), "Please select flight", Toast.LENGTH_LONG).show();
+                }else {
+                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new NewsFragment(), "NewsFragment", getArguments(), R.id.fragment_container);
+                }
             }
         });
 
         mButtonAirportInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("Destination_IATA", getArguments().getString("Destination_IATA"));
-                bundle.putString("Departure_IATA", getArguments().getString("Departure_IATA"));
-
-                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new AirportFragment(), "AirportFragment", bundle, R.id.fragment_container);
+                if (getArguments() == null)
+                {
+                    Toast.makeText(getActivity(), "Please select flight", Toast.LENGTH_LONG).show();
+                }
+                else if (getArguments().getString("Departure_IATA", null) == null || getArguments().getString("Destination_IATA", null) == null)
+                {
+                    Toast.makeText(getActivity(), "Please select flight", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new AirportFragment(), "AirportFragment", getArguments(), R.id.fragment_container);
+                }
             }
         });
 

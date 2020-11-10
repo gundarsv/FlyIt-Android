@@ -2,11 +2,11 @@ package com.flyit.application.repositories;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.preference.PreferenceManager;
 
+import com.flyit.application.fragments.utils.MessageUtils;
 import com.flyit.application.models.Flight;
 import com.flyit.application.models.FlightSearch;
 import com.flyit.application.models.Resource;
@@ -25,25 +25,21 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FlightsRepository {
-    private final String TAG = getClass().getSimpleName();
     private FlyItApi flyItApi;
     private SharedPreferences mPrefs;
     private SharedPreferences.Editor mPrefsEdit;
 
     private static FlightsRepository flightsRepository = null;
 
-    private FlightsRepository(Context context)
-    {
+    private FlightsRepository(Context context) {
         this.flyItApi = RetrofitService.getRetrofitInstance(context).create(FlyItApi.class);
         this.mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         this.mPrefsEdit = mPrefs.edit();
     }
 
 
-    public static FlightsRepository getFLightsRepository(Context context)
-    {
-        if (flightsRepository == null)
-        {
+    public static FlightsRepository getFLightsRepository(Context context) {
+        if (flightsRepository == null) {
             flightsRepository = new FlightsRepository(context);
         }
 
@@ -55,10 +51,9 @@ public class FlightsRepository {
         flyItApi.getFlight().enqueue(new Callback<ArrayList<Flight>>() {
             @Override
             public void onResponse(Call<ArrayList<Flight>> call, Response<ArrayList<Flight>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     flightMutableLiveData.setValue(Resource.success(response.body()));
-                }
-                else{
+                } else {
                     try {
                         Gson gson = new Gson();
                         Type type = new TypeToken<String[]>() {
@@ -79,15 +74,14 @@ public class FlightsRepository {
         return flightMutableLiveData;
     }
 
-    public void searchFlight(String flightNo, final DataCallback<FlightSearch> callback){
+    public void searchFlight(String flightNo, final DataCallback<FlightSearch> callback) {
         flyItApi.getSearchFlight(flightNo).enqueue(new Callback<FlightSearch>() {
             @Override
             public void onResponse(Call<FlightSearch> call, Response<FlightSearch> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     callback.onSuccess(response.body());
-                }
-                else {
-                    callback.onFailure(response.message());
+                } else {
+                    callback.onFailure(MessageUtils.getErrorMessage(response));
                 }
             }
 
@@ -98,16 +92,14 @@ public class FlightsRepository {
         });
     }
 
-    public void addFlight (FlightSearch flightSearch, final AddFlightCallback callback){
+    public void addFlight(FlightSearch flightSearch, final AddFlightCallback callback) {
         flyItApi.addFlight(flightSearch).enqueue(new Callback<Flight>() {
             @Override
             public void onResponse(Call<Flight> call, Response<Flight> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     callback.onAddFlightSuccess();
-                }
-                else {
-                    callback.onAddFlightFailure(response.message());
-                    Log.d("AddFlightFlow", "Failure" + response.code());
+                } else {
+                    callback.onAddFlightFailure(MessageUtils.getErrorMessage(response));
                 }
             }
 

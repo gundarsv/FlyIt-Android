@@ -57,8 +57,7 @@ public class SignUpViewModel extends AndroidViewModel implements DataCallback<Vo
 
         if (isValid) {
             accessRepository.signUp(new SignUp(email, name, password), this);
-        }
-        else {
+        } else {
             this.isLoading.setValue(false);
         }
     }
@@ -108,7 +107,6 @@ public class SignUpViewModel extends AndroidViewModel implements DataCallback<Vo
         } else {
             return true;
         }
-
     }
 
     @Override
