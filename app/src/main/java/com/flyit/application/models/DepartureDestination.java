@@ -9,9 +9,15 @@ public class DepartureDestination {
     private String estimated;
     private String actual = null;
     private String iata;
+    private String icao;
 
 
     // Getter Methods
+
+    public String getIcao() {
+        return icao;
+    }
+
 
     public String getGate() {
         return gate;
@@ -77,5 +83,9 @@ public class DepartureDestination {
 
     public void setIata(String iata) {
         this.iata = iata;
+    }
+
+    public void setIcao(String icao) {
+        this.icao = icao;
     }
 }

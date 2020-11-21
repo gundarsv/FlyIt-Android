@@ -8,8 +8,13 @@ public class Airport {
     private String rentingCompanyUrl;
     private String rentingCompanyName;
     private String rentingCompanyPhoneNo;
+    private String taxiPhoneNo;
+    private String emergencyPhoneNo;
+    private String icao;
 
-    public Airport(String iata, String name, String mapUrl, String mapName, String rentingCompanyUrl, String rentingCompanyName, String rentingCompanyPhoneNo) {
+
+
+    public Airport(String iata, String name, String mapUrl, String mapName, String rentingCompanyUrl, String rentingCompanyName, String rentingCompanyPhoneNo, String taxiPhoneNo, String emergencyPhoneNo, String icao) {
         this.iata = iata;
         this.name = name;
         this.mapUrl = mapUrl;
@@ -17,7 +22,11 @@ public class Airport {
         this.rentingCompanyUrl = rentingCompanyUrl;
         this.rentingCompanyName = rentingCompanyName;
         this.rentingCompanyPhoneNo = rentingCompanyPhoneNo;
+        this.taxiPhoneNo = taxiPhoneNo;
+        this.emergencyPhoneNo = emergencyPhoneNo;
+        this.icao = icao;
     }
+
 
     public String getIata() {
         return iata;
@@ -46,4 +55,17 @@ public class Airport {
     public String getRentingCompanyPhoneNo() {
         return rentingCompanyPhoneNo;
     }
+
+    public String getTaxiPhoneNo() {
+        return taxiPhoneNo;
+    }
+
+    public String getEmergencyPhoneNo() {
+        return emergencyPhoneNo;
+    }
+
+    public String getIcao() {
+        return icao;
+    }
+
 }
