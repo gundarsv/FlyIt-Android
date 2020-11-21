@@ -9,6 +9,7 @@ import com.flyit.application.models.News;
 import com.flyit.application.models.SignUp;
 import com.flyit.application.models.SingIn;
 import com.flyit.application.models.User;
+import com.flyit.application.models.Weather;
 
 import java.util.ArrayList;
 
@@ -46,4 +47,8 @@ public interface FlyItApi {
 
     @GET("Airport/airport/{iata}")
     Call<Airport> getAirportByIata(@Path("iata") String iata);
+
+    @GET("Weather/{icao}")
+    Call<Weather> getWeatherByIcao(@Path("icao") String icao);
+
 }

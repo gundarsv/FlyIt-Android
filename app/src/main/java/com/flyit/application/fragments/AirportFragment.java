@@ -1,6 +1,7 @@
 package com.flyit.application.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,10 +40,12 @@ public class AirportFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.destination_item:
-                        changeFragment(getArguments().getString("Destination_IATA"));
+                        Log.d("CheckICAO", "checking icao " + getArguments().getString("Destination_ICAO"));
+                        changeFragment(getArguments().getString("Destination_IATA"), getArguments().getString("Destination_ICAO"));
                         return true;
                     case R.id.departure_item:
-                        changeFragment(getArguments().getString("Departure_IATA"));
+                        Log.d("CheckICAO", "checking icao " + getArguments().getString("Departure_ICAO"));
+                        changeFragment(getArguments().getString("Departure_IATA"), getArguments().getString("Departure_ICAO"));
                         return true;
                     default:
                         return false;
@@ -58,6 +61,7 @@ public class AirportFragment extends Fragment {
 
         Bundle bundle = new Bundle();
         bundle.putString("airport_iata", getArguments().getString("Departure_IATA"));
+        bundle.putString("airport_icao", getArguments().getString("Departure_ICAO"));
 
         Fragment fragment = new AirportInfoFragment();
         fragment.setArguments(bundle);
@@ -67,9 +71,10 @@ public class AirportFragment extends Fragment {
         ft.commit();
     }
 
-    private void changeFragment(String iata) {
+    private void changeFragment(String iata, String icao) {
         Bundle bundle = new Bundle();
         bundle.putString("airport_iata", iata);
+        bundle.putString("airport_icao", icao);
         FragmentUtils.changeFragment(getActivity().getViewModelStore(), mFragmentManager, new AirportInfoFragment(), "AirportInfoFragment", bundle, R.id.airport_info_container);
     }
 }

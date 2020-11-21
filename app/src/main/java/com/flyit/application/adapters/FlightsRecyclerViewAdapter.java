@@ -1,6 +1,7 @@
 package com.flyit.application.adapters;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.flyit.application.R;
 import com.flyit.application.fragments.ControlCenterMenuFragment;
-import com.flyit.application.fragments.NewsFragment;
 import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.models.Flight;
 
@@ -57,6 +57,10 @@ public class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
                 Bundle bundle = new Bundle();
                 bundle.putString("Destination_IATA", flight.getDestination().getIata());
                 bundle.putString("Departure_IATA", flight.getDeparture().getIata());
+                bundle.putString("Destination_ICAO", flight.getDestination().getIcao());
+                bundle.putString("Departure_ICAO", flight.getDeparture().getIcao());
+
+                Log.d("Flightflow", "ICAO" + flight.getDeparture().getIcao());
 
                 FragmentUtils.changeFragment(context.getViewModelStore(), fragmentManager, new ControlCenterMenuFragment(), "ControlCenterMenuFragment", bundle, R.id.fragment_container);
             }
