@@ -136,7 +136,7 @@ public class ChatFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!mMessageEditText.getText().toString().trim().isEmpty()) {
-                    chatViewModel.sendMessage(1, mMessageEditText.getText().toString());
+                    chatViewModel.sendMessage(getArguments().getInt("ChatroomId", 0), mMessageEditText.getText().toString());
                     mMessageEditText.setText("");
                 }
             }
