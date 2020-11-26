@@ -33,6 +33,7 @@ public class ControlCenterMenuFragment extends Fragment {
         mButtonGames = view.findViewById(R.id.buttonGames);
         mButtonNews = view.findViewById(R.id.buttonNews);
         mButtonAirportInfo = view.findViewById(R.id.buttonAirportInfo);
+        mButtonChat = view.findViewById(R.id.buttonChat);
 
         fragmentManager = getActivity().getSupportFragmentManager();
 
@@ -54,14 +55,11 @@ public class ControlCenterMenuFragment extends Fragment {
         mButtonNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (getArguments() == null)
-                {
+                if (getArguments() == null) {
                     Toast.makeText(getActivity(), "Please select flight", Toast.LENGTH_LONG).show();
-                }
-                else if (getArguments().getString("Departure_IATA", null) == null || getArguments().getString("Destination_IATA", null) == null)
-                {
+                } else if (getArguments().getString("Departure_IATA", null) == null || getArguments().getString("Destination_IATA", null) == null) {
                     Toast.makeText(getActivity(), "Please select flight", Toast.LENGTH_LONG).show();
-                }else {
+                } else {
                     FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new NewsFragment(), "NewsFragment", getArguments(), R.id.fragment_container);
                 }
             }
@@ -70,16 +68,27 @@ public class ControlCenterMenuFragment extends Fragment {
         mButtonAirportInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (getArguments() == null)
-                {
+                if (getArguments() == null) {
                     Toast.makeText(getActivity(), "Please select flight", Toast.LENGTH_LONG).show();
-                }
-                else if (getArguments().getString("Departure_IATA", null) == null || getArguments().getString("Destination_IATA", null) == null)
-                {
+                } else if (getArguments().getString("Departure_IATA", null) == null || getArguments().getString("Destination_IATA", null) == null) {
                     Toast.makeText(getActivity(), "Please select flight", Toast.LENGTH_LONG).show();
-                }
-                else {
+                } else {
                     FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new AirportFragment(), "AirportFragment", getArguments(), R.id.fragment_container);
+                }
+            }
+        });
+
+        mButtonChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (getArguments() == null) {
+                    Toast.makeText(getActivity(), "Please select flight", Toast.LENGTH_LONG).show();
+                } else if (getArguments().getString("Departure_IATA", null) == null || getArguments().getString("Destination_IATA", null) == null) {
+                    Toast.makeText(getActivity(), "Please select flight", Toast.LENGTH_LONG).show();
+                } else if (getArguments().getInt("ChatroomId", 0) == 0) {
+                    Toast.makeText(getActivity(), "Chatroom not available", Toast.LENGTH_LONG).show();
+                } else {
+                    FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new ChatFragment(), "ChatFragment", getArguments(), R.id.fragment_container);
                 }
             }
         });

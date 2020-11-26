@@ -3,6 +3,7 @@ package com.flyit.application.networking;
 import com.flyit.application.models.Airport;
 import com.flyit.application.models.AuthenticationToken;
 import com.flyit.application.models.AuthenticationTokenRefresh;
+import com.flyit.application.models.Chatroom;
 import com.flyit.application.models.Flight;
 import com.flyit.application.models.FlightSearch;
 import com.flyit.application.models.News;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -51,4 +53,12 @@ public interface FlyItApi {
     @GET("Weather/{icao}")
     Call<Weather> getWeatherByIcao(@Path("icao") String icao);
 
+    @GET("Chat/{chatroomId}")
+    Call<Chatroom> getChatroomById(@Path("chatroomId") String chatroomId);
+
+    @POST("Chat/{chatroomId}")
+    Call<Chatroom> joinChatroom(@Path("chatroomId") String chatroomId);
+
+    @DELETE("Chat/{chatroomId}")
+    Call<Chatroom> leaveChatroom(@Path("chatroomId") String chatroomId);
 }

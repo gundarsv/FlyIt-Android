@@ -1,19 +1,13 @@
 package com.flyit.application.models;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-
 public class Flight {
     private float id;
     private String date;
     private String flightNo;
     private String status;
-    DepartureDestination departure;
-    DepartureDestination destination;
-
-    // Getter Methods
+    private int chatroomId;
+    private DepartureDestination departure;
+    private DepartureDestination destination;
 
     public float getId() {
         return id;
@@ -30,8 +24,6 @@ public class Flight {
     public String getStatus() {
         return status;
     }
-
-    // Setter Methods
 
     public void setId(float id) {
         this.id = id;
@@ -65,23 +57,12 @@ public class Flight {
         this.destination = destination;
     }
 
+    public int getChatroomId() {
+        return chatroomId;
+    }
 
-    public String parseDateToddMMyyyy(String time) {
-        String inputPattern = "yyyy-MM-dd HH:mm:ss";
-        String outputPattern = "dd-MMM-yyyy h:mm a";
-        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
-        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
-
-        Date date = null;
-        String str = null;
-
-        try {
-            date = inputFormat.parse(time);
-            str = outputFormat.format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return str;
+    public void setChatroomId(int chatroomId) {
+        this.chatroomId = chatroomId;
     }
 }
 

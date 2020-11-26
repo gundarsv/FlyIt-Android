@@ -59,8 +59,7 @@ public class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
                 bundle.putString("Departure_IATA", flight.getDeparture().getIata());
                 bundle.putString("Destination_ICAO", flight.getDestination().getIcao());
                 bundle.putString("Departure_ICAO", flight.getDeparture().getIcao());
-
-                Log.d("Flightflow", "ICAO" + flight.getDeparture().getIcao());
+                bundle.putInt("ChatroomId", flight.getChatroomId());
 
                 FragmentUtils.changeFragment(context.getViewModelStore(), fragmentManager, new ControlCenterMenuFragment(), "ControlCenterMenuFragment", bundle, R.id.fragment_container);
             }
