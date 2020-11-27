@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.flyit.application.R;
@@ -36,7 +37,7 @@ public class ChatMessageAdapter extends RecyclerView.Adapter {
     public int getItemViewType(int position) {
         ChatroomMessage message = mMessageList.get(position);
 
-        if (message.getUserName().equals("gundars772@gmail.com") && message.getMessageType() == 2) {
+        if (PreferenceManager.getDefaultSharedPreferences(mContext).getString("Current_UserName", "").equals(message.getUserName()) && message.getMessageType() == 2) {
             return VIEW_TYPE_MESSAGE_SENT;
         } else if (message.getMessageType() == 1) {
             return VIEW_TYPE_INFORMATION_MESSAGE;

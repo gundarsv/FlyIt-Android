@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -144,6 +145,8 @@ public class FlightsFragment extends Fragment {
                     FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
                 } else if (userResource.getStatus().equals(Resource.Status.UNAUTHORIZED)) {
                     FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
+                } else {
+                    PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putString("Current_UserName", userResource.getData().getEmail()).apply();
                 }
             }
         });
