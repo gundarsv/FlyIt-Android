@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_trivia_result"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/trivia_result_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Results"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/trivia_result_trophy_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="image_trophy"
+        android:src="@drawable/ic_trophy"/>
+
+    <TextView
+        android:id="@+id/congrats_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/congrats_text_trivia"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/trivia_score_reuslt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/final_score_trivia"
+        android:textColor="@android:color/secondary_text_dark"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/trivia_finish_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:text="@string/trivia_finish_button"
+        android:textColor="@color/colorTriviaGame"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
