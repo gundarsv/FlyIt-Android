@@ -38,7 +38,6 @@
         android:id="@+id/language_game_logo_image"
         android:layout_width="232dp"
         android:layout_height="194dp"
-        android:onClick="btnLoadUnity"
         android:src="@drawable/language_game_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

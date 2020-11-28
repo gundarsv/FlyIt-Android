@@ -33,7 +33,6 @@
     <string name="answer_two">Answer two</string>
     <string name="answer_three">Answer three</string>
     <string name="answer_four">Answer four</string>
-    <string name="submit_button_text">SUBMIT</string>
     <string name="result_screen_title">Results</string>
     <string name="congrats_text_trivia"> Wow, Congratulations!</string>
     <string name="final_score_trivia">Your score is 3/15</string>
