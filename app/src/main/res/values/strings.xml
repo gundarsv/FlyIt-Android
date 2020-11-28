@@ -26,4 +26,13 @@
     <string name="destination">Destination</string>
     <string name="departure">Departure</string>
 
+    <!--Trivia Game Fragments-->
+    <string name="question_title">This is a placeholder text for the question</string>
+    <string name="progress_bar_text">0/15</string>
+    <string name="answer_one">Answer one</string>
+    <string name="answer_two">Answer two</string>
+    <string name="answer_three">Answer three</string>
+    <string name="answer_four">Answer four</string>
+    <string name="submit_button_text">SUBMIT</string>
+
 </resources>

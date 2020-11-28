@@ -12,4 +12,5 @@
     <color name="colorPrimaryBlue">#454C61</color>
     <color name="colorSecondaryBlue">#C6D3E1</color>
     <color name="entertainmentBackground">#C4C4C4</color>
+    <color name="colorTriviaGame">#9400D3</color>
 </resources>
