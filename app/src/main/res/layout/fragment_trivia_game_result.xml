@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         android:text="@string/congrats_text_trivia"
         android:textColor="@android:color/white"
+        android:layout_marginTop="18dp"
         android:textSize="25dp"
         android:textStyle="bold" />
 
@@ -39,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/final_score_trivia"
+        android:layout_marginTop="18dp"
         android:textColor="@android:color/secondary_text_dark"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -48,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
+        android:layout_marginTop="18dp"
         android:text="@string/trivia_finish_button"
         android:textColor="@color/colorTriviaGame"
         android:textSize="18dp"

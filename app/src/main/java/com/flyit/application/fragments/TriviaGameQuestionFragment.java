@@ -153,7 +153,7 @@ public class TriviaGameQuestionFragment extends Fragment {
                 FragmentUtils.changeFragment(getActivity().getViewModelStore(), mFragmentManager, new EntertainmentFragment(), "EntertainmentFragment", getArguments(), R.id.fragment_container);
             }
         });
-        
+
         return view;
     }
 }
