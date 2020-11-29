@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name="com.flyit.application.LanguageLearningGameActivity"></activity>
-        <activity android:name="com.flyit.application.EntertainmentActivity"></activity>
         <activity android:name="com.flyit.application.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

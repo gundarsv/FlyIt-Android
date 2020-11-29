@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.flyit.application.EntertainmentActivity;
 import com.flyit.application.R;
 import com.flyit.application.fragments.utils.FragmentUtils;
 
@@ -40,8 +39,7 @@ public class ControlCenterMenuFragment extends Fragment {
         mButtonGames.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), EntertainmentActivity.class);
-                startActivity(intent);
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new EntertainmentFragment(), "EntertainmentFragment", getArguments(), R.id.fragment_container);
             }
         });
 
@@ -49,7 +47,7 @@ public class ControlCenterMenuFragment extends Fragment {
             @Override
             public void handleOnBackPressed() {
                 FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment", getArguments(), R.id.fragment_container);
-            }
+        }
         });
 
         mButtonNews.setOnClickListener(new View.OnClickListener() {
