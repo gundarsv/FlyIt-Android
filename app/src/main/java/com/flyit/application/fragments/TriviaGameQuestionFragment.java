@@ -20,6 +20,7 @@ import com.flyit.application.R;
 import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.models.QuizAnswer;
 import com.flyit.application.viewModels.TriviaGameQuestionViewModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -91,6 +92,16 @@ public class TriviaGameQuestionFragment extends Fragment {
             }
         });
 
+        triviaGameQuestionViewModel.getImage().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if(s !=null)
+                {
+                    Picasso.get().load(s).into(questionImage);
+                }
+            }
+        });
+
         answerOneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,6 +164,7 @@ public class TriviaGameQuestionFragment extends Fragment {
                 FragmentUtils.changeFragment(getActivity().getViewModelStore(), mFragmentManager, new EntertainmentFragment(), "EntertainmentFragment", getArguments(), R.id.fragment_container);
             }
         });
+
 
         return view;
     }
