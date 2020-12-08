@@ -61,4 +61,10 @@ public interface FlyItApi {
 
     @DELETE("Chat/{chatroomId}")
     Call<Chatroom> leaveChatroom(@Path("chatroomId") String chatroomId);
+
+    @DELETE("Flight/{id}")
+    Call<Flight> deleteFlight(@Path("id") int id);
+
+    @GET("Flight/{id}")
+    Call<Flight> getFlightById(@Path("id") int id);
 }

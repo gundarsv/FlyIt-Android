@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="330dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="268dp"
+        android:layout_height="300dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
@@ -37,7 +37,19 @@
             app:layout_constraintHorizontal_bias="0.037"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.251" />
+            app:layout_constraintVertical_bias="0.217" />
+
+        <TextView
+            android:id="@+id/flightNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flight number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.066"
+            app:layout_constraintStart_toEndOf="@+id/flightno_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.217" />
 
         <TextView
             android:id="@+id/Date"
@@ -52,18 +64,6 @@
             app:layout_constraintVertical_bias="0.075" />
 
         <TextView
-            android:id="@+id/terminal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Terminal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.063"
-            app:layout_constraintStart_toEndOf="@+id/terminal_title"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.426" />
-
-        <TextView
             android:id="@+id/terminal_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,19 +73,19 @@
             app:layout_constraintHorizontal_bias="0.034"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.426" />
+            app:layout_constraintVertical_bias="0.359" />
 
         <TextView
-            android:id="@+id/status"
+            android:id="@+id/terminal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status"
+            android:text="Terminal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintStart_toEndOf="@+id/status_title"
+            app:layout_constraintHorizontal_bias="0.062"
+            app:layout_constraintStart_toEndOf="@+id/terminal_title"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.578" />
+            app:layout_constraintVertical_bias="0.359" />
 
         <TextView
             android:id="@+id/status_title"
@@ -94,22 +94,22 @@
             android:text="Status:"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.031"
+            app:layout_constraintHorizontal_bias="0.032"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.578" />
+            app:layout_constraintVertical_bias="0.494" />
 
         <TextView
-            android:id="@+id/departureTime"
+            android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Departure Time"
+            android:text="Status"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toEndOf="@+id/departureTime_title"
+            app:layout_constraintHorizontal_bias="0.048"
+            app:layout_constraintStart_toEndOf="@+id/status_title"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.758" />
+            app:layout_constraintVertical_bias="0.494" />
 
         <TextView
             android:id="@+id/departureTime_title"
@@ -118,22 +118,22 @@
             android:text="Departure Time:"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.038"
+            app:layout_constraintHorizontal_bias="0.039"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.758" />
+            app:layout_constraintVertical_bias="0.629" />
 
         <TextView
-            android:id="@+id/arrivalTime"
+            android:id="@+id/departureTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Arrival Time"
+            android:text="Departure Time"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.057"
-            app:layout_constraintStart_toEndOf="@+id/arrivalTime_title"
+            app:layout_constraintHorizontal_bias="0.098"
+            app:layout_constraintStart_toEndOf="@+id/departureTime_title"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.924" />
+            app:layout_constraintVertical_bias="0.629" />
 
         <TextView
             android:id="@+id/arrivalTime_title"
@@ -145,19 +145,19 @@
             app:layout_constraintHorizontal_bias="0.036"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.924" />
+            app:layout_constraintVertical_bias="0.765" />
 
         <TextView
-            android:id="@+id/flightNo"
+            android:id="@+id/arrivalTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Flight number"
+            android:text="Arrival Time"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.077"
-            app:layout_constraintStart_toEndOf="@+id/flightno_title"
+            app:layout_constraintHorizontal_bias="0.055"
+            app:layout_constraintStart_toEndOf="@+id/arrivalTime_title"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.251" />
+            app:layout_constraintVertical_bias="0.765" />
 
         <ImageView
             android:id="@+id/departureAirportWidget"
@@ -168,8 +168,31 @@
             app:layout_constraintHorizontal_bias="0.69"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.432"
+            app:layout_constraintVertical_bias="0.31"
             app:srcCompat="@drawable/departures" />
+
+        <TextView
+            android:id="@+id/arrivalAirport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arrival"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.257"
+            app:layout_constraintStart_toEndOf="@+id/arrivalAirportWidget"
+            app:layout_constraintTop_toBottomOf="@+id/departureAirport"
+            app:layout_constraintVertical_bias="0.149" />
+
+        <TextView
+            android:id="@+id/departureAirport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:text="Departure"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.224"
+            app:layout_constraintStart_toEndOf="@+id/departureAirportWidget"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/arrivalAirportWidget"
@@ -180,36 +203,35 @@
             app:layout_constraintHorizontal_bias="0.692"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/departureAirportWidget"
-            app:layout_constraintVertical_bias="0.132"
+            app:layout_constraintVertical_bias="0.103"
             app:srcCompat="@drawable/landing" />
 
         <TextView
-            android:id="@+id/departureAirport"
+            android:id="@+id/lastUpdateTime_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="108dp"
-            android:text="Departure"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.204"
-            app:layout_constraintStart_toEndOf="@+id/departureAirportWidget"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="28dp"
+            android:text="Last update at: "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/arrivalTime_title"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/arrivalAirport"
+            android:id="@+id/lastUpdatedTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Arrival"
+            android:layout_marginBottom="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.228"
-            app:layout_constraintStart_toEndOf="@+id/arrivalAirportWidget"
-            app:layout_constraintTop_toBottomOf="@+id/departureAirport"
-            app:layout_constraintVertical_bias="0.196" />
+            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintStart_toEndOf="@+id/lastUpdateTime_title" />
 
         <Button
             android:id="@+id/flightItemButton"
-            android:layout_width="303dp"
-            android:layout_height="220dp"
+            android:layout_width="187dp"
+            android:layout_height="156dp"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="15dp"
             android:alpha="0"
@@ -218,21 +240,68 @@
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.472"
+            app:layout_constraintHorizontal_bias="0.331"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.727" />
+            app:layout_constraintVertical_bias="0.558" />
 
         <ImageView
             android:id="@+id/flightItemSettings"
             android:layout_width="48dp"
             android:layout_height="39dp"
-            android:layout_marginEnd="16dp"
+            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.952"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.082"
+            app:layout_constraintVertical_bias="0.069"
             app:srcCompat="@drawable/settings" />
+
+        <ImageView
+            android:id="@+id/greyBackgroundSettings"
+            android:layout_width="456dp"
+            android:layout_height="455dp"
+            android:layout_marginStart="5dp"
+            android:alpha="0.8"
+            android:background="@drawable/item_flight_shape"
+            android:backgroundTint="#4AFFFFFF"
+            android:backgroundTintMode="src_over"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.868"
+            app:layout_constraintStart_toEndOf="@+id/Date_title"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:layout_constraintVertical_bias="0.496"
+            app:srcCompat="@drawable/lightgrey" />
+
+        <Button
+            android:id="@+id/deleteFlightButton"
+            android:layout_width="105dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="252dp"
+            android:layout_marginBottom="64dp"
+            android:background="@drawable/rounded_corners"
+            android:text="Delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/refreshFlightButton"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/refreshFlightButton"
+            app:layout_constraintVertical_bias="0.078" />
+
+        <Button
+            android:id="@+id/refreshFlightButton"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/rounded_corners"
+            android:text="Refresh"
+            app:layout_constraintEnd_toEndOf="@+id/flightItemSettings"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flightItemSettings" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

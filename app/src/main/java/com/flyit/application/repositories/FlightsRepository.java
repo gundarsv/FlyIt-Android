@@ -14,6 +14,8 @@ import com.flyit.application.networking.FlyItApi;
 import com.flyit.application.networking.RetrofitService;
 import com.flyit.application.networking.callbacks.AddFlightCallback;
 import com.flyit.application.networking.callbacks.DataCallback;
+import com.flyit.application.networking.callbacks.DeleteFlightCallback;
+import com.flyit.application.networking.callbacks.UpdateFlightCallback;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -106,6 +108,43 @@ public class FlightsRepository {
             @Override
             public void onFailure(Call<Flight> call, Throwable t) {
                 callback.onAddFlightFailure(t.getMessage());
+            }
+        });
+    }
+
+    public void deleteFlight(int id, final DeleteFlightCallback callback){
+        flyItApi.deleteFlight(id).enqueue(new Callback<Flight>() {
+            @Override
+            public void onResponse(Call<Flight> call, Response<Flight> response) {
+                if (response.isSuccessful()) {
+                    callback.onDeleteFlightSuccess(response.body());
+                } else {
+                    callback.onDeleteFlightFailure(MessageUtils.getErrorMessage(response));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Flight> call, Throwable t) {
+                callback.onDeleteFlightFailure(t.getMessage());
+            }
+        });
+    }
+
+
+    public void getFlightById(int id, final UpdateFlightCallback callback){
+        flyItApi.getFlightById(id).enqueue(new Callback<Flight>() {
+            @Override
+            public void onResponse(Call<Flight> call, Response<Flight> response) {
+                if (response.isSuccessful()) {
+                    callback.onUpdateFlightSuccess(response.body());
+                } else {
+                    callback.onUpdateFlightFailure(MessageUtils.getErrorMessage(response));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Flight> call, Throwable t) {
+                callback.onUpdateFlightFailure(t.getMessage());
             }
         });
     }

@@ -19,8 +19,13 @@ public class FlightsRecyclerViewHolder extends RecyclerView.ViewHolder {
     public TextView ArrivalTime;
     public TextView DepartureAirport;
     public TextView ArrivalAirport;
+    public TextView LastUpdatedTime;
     public ImageView settingsMenu;
     public Button mFlightItem;
+    public Button mRefreshFlight;
+    public Button mDeleteFlight;
+    public ImageView greyBackgroundSettings;
+
 
     public FlightsRecyclerViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -33,8 +38,12 @@ public class FlightsRecyclerViewHolder extends RecyclerView.ViewHolder {
         ArrivalTime = itemView.findViewById(R.id.arrivalTime);
         DepartureAirport = itemView.findViewById(R.id.departureAirport);
         ArrivalAirport = itemView.findViewById(R.id.arrivalAirport);
+        LastUpdatedTime = itemView.findViewById(R.id.lastUpdatedTime);
         settingsMenu = itemView.findViewById(R.id.flightItemSettings);
         mFlightItem = itemView.findViewById(R.id.flightItemButton);
+        mRefreshFlight = itemView.findViewById(R.id.refreshFlightButton);
+        mDeleteFlight = itemView.findViewById(R.id.deleteFlightButton);
+        greyBackgroundSettings = itemView.findViewById(R.id.greyBackgroundSettings);
     }
 }
 

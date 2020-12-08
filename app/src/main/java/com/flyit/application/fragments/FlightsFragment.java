@@ -1,6 +1,7 @@
 package com.flyit.application.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +24,14 @@ import com.flyit.application.adapters.FlightsRecyclerViewAdapter;
 import com.flyit.application.fragments.utils.FragmentUtils;
 import com.flyit.application.models.Flight;
 import com.flyit.application.models.Resource;
+import com.flyit.application.models.Tuple;
 import com.flyit.application.models.User;
 import com.flyit.application.viewModels.FlightViewModel;
 import com.flyit.application.viewModels.UserViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FlightsFragment extends Fragment {
     private FloatingActionButton mMenuFab, mSearchFab, mControlCenterFAB, mSignOutFab;
@@ -40,6 +43,7 @@ public class FlightsFragment extends Fragment {
     private UserViewModel userViewModel;
     private RecyclerView recyclerView;
     private FlightsRecyclerViewAdapter flightsRecyclerViewAdapter;
+    private List<Flight> flights;
 
     @Nullable
     @Override
@@ -50,17 +54,59 @@ public class FlightsFragment extends Fragment {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         flightViewModel = new ViewModelProvider(this).get(FlightViewModel.class);
 
+        flights = new ArrayList<>();
+
+        flightsRecyclerViewAdapter = new FlightsRecyclerViewAdapter(getActivity(), flights, flightViewModel);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(flightsRecyclerViewAdapter);
+
         this.fragmentManager = getActivity().getSupportFragmentManager();
 
         flightViewModel.getFlight().observe(getViewLifecycleOwner(), new Observer<Resource<ArrayList<Flight>>>() {
             @Override
             public void onChanged(Resource<ArrayList<Flight>> listResource) {
                 if (listResource.getStatus().equals(Resource.Status.SUCCESS)) {
-                    flightsRecyclerViewAdapter = new FlightsRecyclerViewAdapter(getActivity(), listResource.getData());
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    recyclerView.setAdapter(flightsRecyclerViewAdapter);
+                    flights.addAll(listResource.getData());
+                    flightsRecyclerViewAdapter.notifyItemRangeInserted(0, flights.size());
                 } else {
                     Toast.makeText(getActivity(), listResource.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        flightViewModel.getUpdateData().observe(getViewLifecycleOwner(), new Observer<Tuple<String, Flight>>() {
+            @Override
+            public void onChanged(Tuple<String, Flight> stringFlightTuple) {
+                if (stringFlightTuple != null) {
+                    switch (stringFlightTuple.x) {
+                        case "update":
+                            int positionToReturn = 0;
+                            int position = 0;
+                            for (Flight f : flights) {
+                                if (f.getId() == stringFlightTuple.y.getId()) {
+                                    positionToReturn = position;
+                                }
+                                position++;
+                            }
+                            flights.set(positionToReturn, stringFlightTuple.y);
+                            Log.d("FlightUpdateFlow", stringFlightTuple.y.getLastUpdated());
+                            flightsRecyclerViewAdapter.notifyItemChanged(positionToReturn);
+                            break;
+
+                        case "delete":
+                            int positionToReturnDelete = 0;
+                            int positionDelete = 0;
+                            for (Flight f : flights) {
+                                if (f.getId() == stringFlightTuple.y.getId()) {
+                                    positionToReturnDelete = positionDelete;
+                                }
+                                positionDelete++;
+                            }
+                            flights.remove(positionToReturnDelete);
+                            Log.d("FlightDeleteFlow", stringFlightTuple.y.getLastUpdated());
+                            flightsRecyclerViewAdapter.notifyItemRemoved(positionToReturnDelete);
+                            break;
+                    }
                 }
             }
         });
