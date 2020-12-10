@@ -1,15 +1,16 @@
 package com.flyit.application.models;
 
 public class Flight {
-    private float id;
+    private int id;
     private String date;
+    private String lastUpdated;
     private String flightNo;
     private String status;
     private int chatroomId;
     private DepartureDestination departure;
     private DepartureDestination destination;
 
-    public float getId() {
+    public int getId() {
         return id;
     }
 
@@ -21,11 +22,19 @@ public class Flight {
         return flightNo;
     }
 
+    public String getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(String lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
     public String getStatus() {
         return status;
     }
 
-    public void setId(float id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -64,6 +73,9 @@ public class Flight {
     public void setChatroomId(int chatroomId) {
         this.chatroomId = chatroomId;
     }
+
+
+
 }
 
 
