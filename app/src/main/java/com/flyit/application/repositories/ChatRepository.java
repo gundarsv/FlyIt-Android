@@ -2,6 +2,7 @@ package com.flyit.application.repositories;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import androidx.preference.PreferenceManager;
 
@@ -141,7 +142,9 @@ public class ChatRepository {
     public void endChatroomConnection(int chatroomId) {
         if (hubConnection.getConnectionState() == HubConnectionState.CONNECTED) {
             hubConnection.send("EndChat", chatroomId);
-            hubConnection.close();
+            if (hubConnection.getConnectionState() == HubConnectionState.CONNECTED) {
+                hubConnection.close();
+            }
         }
     }
 }

@@ -1,5 +1,18 @@
 package com.flyit.application.models;
 
+import android.os.Build;
+import android.util.Log;
+
+import androidx.annotation.RequiresApi;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 public class Flight {
     private int id;
     private String date;
@@ -18,12 +31,27 @@ public class Flight {
         return date;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public OffsetDateTime getDateTimeOffset() {
+        return OffsetDateTime.parse(date, DateTimeFormatter.ISO_OFFSET_DATE_TIME).withOffsetSameInstant(ZoneOffset.UTC);
+    }
+
     public String getFlightNo() {
         return flightNo;
     }
 
     public String getLastUpdated() {
         return lastUpdated;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalDateTime getLastUpdatedDateTime() {
+        if (lastUpdated.contains("+"))
+        {
+            return LocalDateTime.parse(lastUpdated, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        }
+
+        return LocalDateTime.parse(lastUpdated);
     }
 
     public void setLastUpdated(String lastUpdated) {
@@ -73,9 +101,6 @@ public class Flight {
     public void setChatroomId(int chatroomId) {
         this.chatroomId = chatroomId;
     }
-
-
-
 }
 
 

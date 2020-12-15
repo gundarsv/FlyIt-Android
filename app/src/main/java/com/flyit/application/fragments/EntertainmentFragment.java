@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -40,6 +41,13 @@ public class EntertainmentFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 getActivity().overridePendingTransition(0, 0);
+            }
+        });
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), mFragmentManager, new ControlCenterMenuFragment(), "ControlCenterMenuFragment", getArguments(), R.id.fragment_container);
             }
         });
         return view;
