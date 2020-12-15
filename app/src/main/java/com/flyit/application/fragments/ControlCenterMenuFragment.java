@@ -1,6 +1,5 @@
 package com.flyit.application.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,21 +32,39 @@ public class ControlCenterMenuFragment extends Fragment {
         mButtonNews = view.findViewById(R.id.buttonNews);
         mButtonAirportInfo = view.findViewById(R.id.buttonAirportInfo);
         mButtonChat = view.findViewById(R.id.buttonChat);
+        mButtonSearchFlights = view.findViewById(R.id.buttonMenuSearch);
+        mButtonMyFlights = view.findViewById(R.id.buttonMenuMyFlights);
+        mButtonMyFlights = view.findViewById(R.id.buttonMenuMyFlights);
 
         fragmentManager = getActivity().getSupportFragmentManager();
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment", getArguments(), R.id.fragment_container);
+            }
+        });
+
+        mButtonSearchFlights.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SearchForFlightFragment(), "SearchForFlightsFragment", getArguments(), R.id.fragment_container);
+            }
+        });
+
+
+        mButtonMyFlights.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment", getArguments(), R.id.fragment_container);
+            }
+        });
 
         mButtonGames.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new EntertainmentFragment(), "EntertainmentFragment", getArguments(), R.id.fragment_container);
             }
-        });
-
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new FlightsFragment(), "FlightsFragment", getArguments(), R.id.fragment_container);
-        }
         });
 
         mButtonNews.setOnClickListener(new View.OnClickListener() {
