@@ -1,5 +1,6 @@
 package com.flyit.application.adapters;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,16 +35,6 @@ public class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         this.flightViewModel = flightViewModel;
     }
 
-    public void updateFlight(Flight flight) {
-        for (Flight f : flightArrayList) {
-            if (f.getId() == flight.getId()) {
-                f = flight;
-            }
-        }
-        Log.d("FlightUpdateFlow", flight.getLastUpdated());
-        this.notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -51,20 +43,29 @@ public class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Flight flight = flightArrayList.get(position);
         FlightsRecyclerViewHolder viewViewHolder = (FlightsRecyclerViewHolder) holder;
 
-        viewViewHolder.Date.setText(flight.getDate());
+        viewViewHolder.Date.setText(flight.getDateTimeOffset().getDayOfMonth() + "/"
+                + flight.getDateTimeOffset().getMonthValue() + "/"
+                + flight.getDateTimeOffset().getYear());
         viewViewHolder.FlightNo.setText(flight.getFlightNo());
         viewViewHolder.Terminal.setText(flight.getDeparture().getTerminal());
         viewViewHolder.Status.setText(flight.getStatus());
-        viewViewHolder.DepartureTime.setText(flight.getDeparture().getScheduled());
-        viewViewHolder.ArrivalTime.setText(flight.getDestination().getScheduled());
+        viewViewHolder.DepartureTime.setText(flight.getDeparture().getDateTimeOffset().getDayOfMonth() + "/"
+                + flight.getDeparture().getDateTimeOffset().getMonthValue() + "/"
+                + flight.getDeparture().getDateTimeOffset().getYear() + " " + flight.getDeparture().getDateTimeOffset().getHour() + ":" + flight.getDeparture().getDateTimeOffset().getMinute());
+        viewViewHolder.ArrivalTime.setText(flight.getDestination().getDateTimeOffset().getDayOfMonth() + "/"
+                + flight.getDestination().getDateTimeOffset().getMonthValue() + "/"
+                + flight.getDestination().getDateTimeOffset().getYear() + " " + flight.getDestination().getDateTimeOffset().getHour() + ":" + flight.getDestination().getDateTimeOffset().getMinute());
         viewViewHolder.DepartureAirport.setText(flight.getDeparture().getIata());
         viewViewHolder.ArrivalAirport.setText(flight.getDestination().getIata());
-        viewViewHolder.LastUpdatedTime.setText(flight.getLastUpdated());
+        viewViewHolder.LastUpdatedTime.setText(flight.getLastUpdatedDateTime().getDayOfMonth() + "/"
+                + flight.getLastUpdatedDateTime().getMonthValue() + "/"
+                + flight.getLastUpdatedDateTime().getYear() + " " + flight.getLastUpdatedDateTime().getHour() + ":" + flight.getLastUpdatedDateTime().getMinute() + ":" + flight.getLastUpdatedDateTime().getSecond());
 
         viewViewHolder.mFlightItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +133,7 @@ public class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
                 viewViewHolder.mDeleteFlight.setVisibility(View.GONE);
                 isSettingsMenuVisible = false;
 
-              //  Toast.makeText(view.getContext(), "Flight number: " + flight.getFlightNo() + " was deleted", Toast.LENGTH_LONG).show();
+                //  Toast.makeText(view.getContext(), "Flight number: " + flight.getFlightNo() + " was deleted", Toast.LENGTH_LONG).show();
             }
         });
     }

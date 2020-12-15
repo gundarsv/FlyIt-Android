@@ -191,7 +191,7 @@ public class FlightsFragment extends Fragment {
                     FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
                 } else if (userResource.getStatus().equals(Resource.Status.UNAUTHORIZED)) {
                     FragmentUtils.changeFragment(getActivity().getViewModelStore(), fragmentManager, new SignInFragment(), "LoginFragment", null, R.id.fragment_container);
-                } else {
+                } else if (userResource.getData() != null){
                     PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putString("Current_UserName", userResource.getData().getEmail()).apply();
                 }
             }

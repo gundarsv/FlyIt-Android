@@ -1,5 +1,12 @@
 package com.flyit.application.models;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class DepartureDestination {
     private String gate;
     private String delay = null;
@@ -11,13 +18,9 @@ public class DepartureDestination {
     private String iata;
     private String icao;
 
-
-    // Getter Methods
-
     public String getIcao() {
         return icao;
     }
-
 
     public String getGate() {
         return gate;
@@ -39,6 +42,11 @@ public class DepartureDestination {
         return scheduled;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public OffsetDateTime getDateTimeOffset() {
+        return OffsetDateTime.parse(scheduled, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+    }
+
     public String getEstimated() {
         return estimated;
     }
@@ -50,8 +58,6 @@ public class DepartureDestination {
     public String getIata() {
         return iata;
     }
-
-    // Setter Methods
 
     public void setGate(String gate) {
         this.gate = gate;
