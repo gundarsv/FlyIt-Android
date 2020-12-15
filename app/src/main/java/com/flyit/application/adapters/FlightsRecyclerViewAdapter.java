@@ -116,8 +116,6 @@ public class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
                 viewViewHolder.mRefreshFlight.setVisibility(View.GONE);
                 viewViewHolder.mDeleteFlight.setVisibility(View.GONE);
                 isSettingsMenuVisible = false;
-
-                // Toast.makeText(view.getContext(), "Flight number: " + flight.getFlightNo() + " was updated", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -132,8 +130,6 @@ public class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
                 viewViewHolder.mRefreshFlight.setVisibility(View.GONE);
                 viewViewHolder.mDeleteFlight.setVisibility(View.GONE);
                 isSettingsMenuVisible = false;
-
-                //  Toast.makeText(view.getContext(), "Flight number: " + flight.getFlightNo() + " was deleted", Toast.LENGTH_LONG).show();
             }
         });
     }
