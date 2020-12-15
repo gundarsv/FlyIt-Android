@@ -66,7 +66,7 @@
         app:layout_constraintVertical_bias="0.793" />
 
     <Button
-        android:id="@+id/buttonMyFlights"
+        android:id="@+id/buttonMenuMyFlights"
         android:layout_width="111dp"
         android:layout_height="107dp"
         android:background="@drawable/my_flights"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.206" />
 
     <Button
-        android:id="@+id/buttonSearch"
+        android:id="@+id/buttonMenuSearch"
         android:layout_width="111dp"
         android:layout_height="107dp"
         android:background="@drawable/search_for_flights"
