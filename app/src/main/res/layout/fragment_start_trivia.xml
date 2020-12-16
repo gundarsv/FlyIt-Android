@@ -12,7 +12,7 @@
         android:id="@+id/start_trivia_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="18dp"
         android:text="WELCOME"
         android:textColor="@android:color/white"
         android:textSize="34sp"
@@ -24,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="18dp"
         android:contentDescription="image_trivia"
-        android:src="@drawable/trivia_image"/>
+        android:src="@drawable/trivia_image"
+        />
 
     <Button
         android:id="@+id/trivia_start_button"
