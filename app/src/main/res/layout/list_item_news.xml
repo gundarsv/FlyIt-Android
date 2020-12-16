@@ -7,7 +7,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="248dp"
+        android:layout_height="290dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="35dp"
         android:layout_marginRight="10dp"
@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/newsImage"
-            android:layout_width="289dp"
-            android:layout_height="193dp"
+            android:layout_width="353dp"
+            android:layout_height="132dp"
             android:background="@drawable/rounded_corners"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,8 +28,8 @@
 
         <TextView
             android:id="@+id/newsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="265dp"
+            android:layout_height="82dp"
             android:text="Title of the news post"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"

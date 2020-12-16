@@ -96,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:clickable="true"
-        android:src="@drawable/baseline_favorite_24"
+        android:src="@drawable/controlcenterlever"
         app:backgroundTint="#8C67CD"
         app:layout_constraintBottom_toTopOf="@+id/floatingsearchflightsbutton"
         app:layout_constraintEnd_toEndOf="@+id/floatingsearchflightsbutton" />

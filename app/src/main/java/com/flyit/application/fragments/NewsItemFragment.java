@@ -1,8 +1,7 @@
 package com.flyit.application.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.flyit.application.R;
 import com.flyit.application.viewModels.NewsViewModel;
@@ -36,6 +33,8 @@ public class NewsItemFragment extends Fragment {
         Picasso.get().load(getArguments().getString("News_ImageURL")).into(news_image);
         news_title.setText(getArguments().getString("News_Title"));
         news_body.setText(getArguments().getString("News_Body"));
+        news_body.setMovementMethod(new ScrollingMovementMethod());
+
 
         return view;
     }
