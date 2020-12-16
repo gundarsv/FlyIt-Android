@@ -12,16 +12,16 @@
         android:id="@+id/start_trivia_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="32dp"
         android:text="WELCOME"
         android:textColor="@android:color/white"
-        android:textSize="34sp"
+        android:textSize="34dp"
         android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/trivia_result_trophy_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="234dp"
         android:layout_marginRight="18dp"
         android:contentDescription="image_trivia"
         android:src="@drawable/trivia_image"
@@ -32,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
+        android:layout_marginTop="32dp"
         android:text="@string/trivia_start_button"
         android:textColor="@color/colorTriviaGame"
         android:textSize="18dp"
